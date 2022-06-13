@@ -1,0 +1,129 @@
+<div class="card">
+  <h5>Distribucion de Casos</h5>
+  
+        <p-table #dt 
+        [value]="customers1" 
+        [(selection)]="selectedCustomers1" 
+        dataKey="id"                 
+        styleClass="p-datatable-customers" 
+        [rowHover]="true" 
+        [rows]="10" 
+        [paginator]="true"
+        [filterDelay]="0" 
+        [globalFilterFields]="['usuario','Radicados','Solucionados','cerrados','promedio','calificacion']">
+            
+        
+
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width: 3rem">
+                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                    </th>
+                    <th pSortableColumn="usuario">
+                        <div class="flex justify-content-between align-items-center">
+                            Usuario
+                            <p-sortIcon field="representative.name"></p-sortIcon>
+                            <p-columnFilter field="representative" matchMode="in" display="menu" [showMatchModes]="false" [showOperator]="false" [showAddButton]="false">
+                              <ng-template pTemplate="header">
+                                  <div class="px-3 pt-3 pb-0">
+                                      <span class="font-bold">Agent Picker</span>
+                                  </div>
+                              </ng-template>
+                              <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                                  <p-multiSelect [ngModel]="value" [options]="representatives" placeholder="Any" (onChange)="filter($event.value)" optionLabel="name">
+                                      <ng-template let-option pTemplate="item">
+                                          <div class="p-multiselect-representative-option">
+                                              <img [alt]="option.label" src="assets/demo/images/avatar/{{option.image}}" width="32" style="vertical-align: middle" />
+                                              <span class="ml-1">{{representative.name}}</span>
+                                          </div>
+                                      </ng-template>
+                                  </p-multiSelect>
+                              </ng-template>
+                          </p-columnFilter>
+                        </div>
+                    </th>
+
+                    <th pSortableColumn="radicados">
+                        <div class="flex justify-content-between align-items-center">
+                            Radicados
+                            <p-sortIcon field="radicados"></p-sortIcon>
+                            <p-columnFilter type="text" field="radicados" display="menu" class="ml-auto"></p-columnFilter>
+                        </div>
+                    </th>
+
+                    <th pSortableColumn="solucionados">
+                        <div class="flex justify-content-between align-items-center">
+                          Solucionados
+                            <p-sortIcon field="solucionados"></p-sortIcon>
+                            <p-columnFilter type="text" field="solucionados" display="menu" class="ml-auto"></p-columnFilter>
+                           
+                        </div>
+                    </th>
+                    <th pSortableColumn="cerrados">
+                      <div class="flex justify-content-between align-items-center">
+                        Cerrados
+                          <p-sortIcon field="solucionados"></p-sortIcon>
+                          <p-columnFilter type="text" field="cerrados" display="menu" class="ml-auto"></p-columnFilter>
+                         
+                      </div>
+                  </th>
+                    <th pSortableColumn="promedio">
+                        <div class="flex justify-content-between align-items-center">
+                            Promedio
+                            <p-sortIcon field="promedio"></p-sortIcon>
+                            <p-columnFilter type="text" field="promedio" display="menu" class="ml-auto"></p-columnFilter>
+                        </div>
+                    </th>
+                    <th pSortableColumn="calificacion">
+                        <div class="flex justify-content-between align-items-center">
+                            Calificacion Promedio
+                            <p-sortIcon field="calificacion"></p-sortIcon>
+                            <p-columnFilter type="text" field="calificacion" display="menu" class="ml-auto"></p-columnFilter>
+                        </div>
+                    </th>                                       
+                    <th style="width: 8rem"></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-customer>
+                <tr class="p-selectable-row">
+                    <td>
+                        <p-tableCheckbox [value]="customer"></p-tableCheckbox>
+                    </td>
+                    <td>
+                      <span class="p-column-title">Usuario</span>
+                      <img [alt]="customer.representative.name"
+                           src="assets/demo/images/avatar/{{customer.representative.image}}" width="32"
+                           style="vertical-align: middle"/>
+                      <span class="image-text" style="margin-left: .5em;vertical-align: middle">{{customer.representative.name}}</span>
+                    </td>
+                    <td>
+                        <span class="p-column-title">Radicados</span>                        
+                        {{customer.radicados}}
+                    </td>
+                    <td>
+                      <span class="p-column-title">Solucionados</span>                        
+                        {{customer.solucionados}}
+                    </td>
+                    <td>
+                      <span class="p-column-title">Cerrados</span>                        
+                      {{customer.cerrados}}
+                    </td>
+                    <td>
+                      <span class="p-column-title">T. Promedio</span>                        
+                      {{customer.promedio}}
+                    </td>
+                    <td>
+                      <span class="p-column-title">Calificacion</span>                        
+                      {{customer.calificacion}}
+                    </td>
+                 
+                  
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+                <tr>
+                    <td colspan="8">No customers found.</td>
+                </tr>
+            </ng-template>
+        </p-table>
+</div>

@@ -1,0 +1,249 @@
+<div class="grid">
+    <div class="col-12">
+
+        <p-toast></p-toast>
+
+         <!--Begin toolbar with button new, import and export -->
+        <div class="card">
+            <p-toolbar styleClass="mb-0">
+                <ng-template pTemplate="left" styleClass="mb-0">
+                    <button pButton pRipple label="{{ 'general.btnNew' | translate }}" icon="pi pi-plus" 
+                        class="p-button-info mr-2 mb-2" (click)="openNewModal()">
+                    </button>
+
+                    <button pButton pRipple label="{{ 'general.btnDelete' | translate }}" icon="pi pi-trash" 
+                        class="p-button-danger mr-2 mb-2" (click)="deleteSelected()" 
+                        [disabled]="!selectedRecords || !selectedRecords.length">
+                    </button>
+
+                    <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" 
+                        label="{{ 'general.btnImport' | translate }}" chooseLabel="Import" 
+                        class="mr-2 mb-2 inline-block">
+                    </p-fileUpload>
+
+                    <button pButton pRipple label="{{ 'general.btnExport' | translate }}" 
+                        icon="pi pi-upload" 
+                        class="p-button-help mb-2" (click)="dt.exportCSV()">
+                    </button>
+                </ng-template>
+
+                <ng-template pTemplate="right">
+                  
+                    <span class="p-input-icon-left">
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text" 
+                            (keyup.enter)="searchFor(state,$event.target.value)"  
+                            placeholder="{{ 'general.txtSearch' | translate }}" 
+                        />
+                    </span>
+
+                </ng-template>
+            </p-toolbar>
+           
+            <!--End toolbar -->
+            <p-toolbar>
+                <ng-template pTemplate="left">
+                    <h5 class="m-0">{{ 'general.ttlUsers' | translate }} 
+                        {{ 'general.lblOf' | translate }}  
+                        {{ 'general.sttUsers' | translate }}
+                    </h5>
+                </ng-template>
+
+                <ng-template pTemplate="right" style="padding: 0px;">
+                    <p-tabView  orientation="right" (onChange)="handleTabsChange($event)">
+                        <p-tabPanel>
+                            <ng-template pTemplate = "header">
+                                <i class="pi pi-check"></i>
+                                <span>{{ 'general.tabCurrent' | translate }}</span>
+                            </ng-template>
+                        </p-tabPanel>
+
+                        <p-tabPanel>
+                            <ng-template pTemplate = "header">
+                                <i class="pi pi-clock"></i>
+                                <span>{{ 'general.tabRecord' | translate }}</span>
+                            </ng-template>
+                        </p-tabPanel>
+
+                    </p-tabView>
+                    
+                </ng-template>
+            </p-toolbar>
+            <!--Begin table -->
+            <p-table #dt 
+                [value]="records" 
+                [rows]="10" 
+                [paginator]="true" 
+                [globalFilterFields]="['name','status']"
+                [(selection)]="selectedRecords" 
+                [rowHover]="true" dataKey="id"
+                styleClass="p-datatable-customers"
+                currentPageReportTemplate="{{ 'general.tblShowings' | translate }} {first} 
+                {{ 'general.lblTo' | translate }} {last} {{ 'general.lblOf' | translate }} {totalRecords} 
+                {{ 'general.tblRecords' | translate }}" 
+                [showCurrentPageReport]="true">
+
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3rem">
+                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                        </th>
+                        <th pSortableColumn="name">
+                            {{ 'general.lblName' | translate }}  
+                            <p-sortIcon field="name"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="price">{{ 'general.lblPrice' | translate }}
+                            <p-sortIcon field="price"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="category">{{ 'general.lblCategory' | translate }} 
+                            <p-sortIcon field="category"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="rating">{{ 'general.lblReviews' | translate }} 
+                            <p-sortIcon field="rating"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="inventoryStatus">{{ 'general.lblState' | translate }} 
+                            <p-sortIcon field="inventoryStatus"></p-sortIcon>
+                        </th>
+                        <th>{{ 'general.tblOption' | translate }} </th>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-record>
+                    <tr>
+                        <td>
+                            <p-tableCheckbox [value]="record"></p-tableCheckbox>
+                        </td>
+                        <td><span class="p-column-title">{{ 'general.lblName' | translate }}</span>
+                            {{record.name}}
+                        </td>
+                        <td><span class="p-column-title">{{ 'general.lblPrice' | translate }}</span>
+                            {{record.price | currency:'USD'}}
+                        </td>
+                        <td><span class="p-column-title">{{ 'general.lblCategory' | translate }}</span>
+                            {{record.category}}
+                        </td>
+                        <td><span class="p-column-title">{{ 'general.lblReviews' | translate }}</span>
+                            <p-rating [ngModel]="record.rating" [readonly]="true" [cancel]="false"></p-rating>
+                        </td>
+                        <td><span class="p-column-title">{{ 'general.lblState' | translate }}</span>
+                            <span [class]="'user-badge status-'
+                                + (record.inventoryStatus ? record.inventoryStatus.toLowerCase() : '')">
+                                {{record.inventoryStatus}}
+                            </span>
+                        </td>
+                        <td>
+                            <span class="p-column-title">{{ 'general.btnEdit' | translate }}</span>
+                            <span>
+                                <button  pButton pRipple icon="pi pi-pencil" 
+                                    class="p-button-rounded p-button-success p-button-text mr-2 mb-2" 
+                                    (click)="editModal(record)">
+                                </button>
+                            </span>
+                            <span class="p-column-title">{{ 'general.btnDelete' | translate }}</span>
+                            <span>
+                                <button  pButton pRipple icon="pi pi-trash"
+                                    class="p-button-rounded p-button-danger p-button-text mr-2 mb-2" 
+                                    (click)="delete(record)">
+                                </button>
+                            </span>
+                            </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="summary">
+                    <div class="flex align-items-center justify-content-between">
+                        {{ 'general.tblTotal' | translate }}  
+                        {{ records ? records.length : 0 }} 
+                        {{ 'general.tblRecords' | translate }}.
+                    </div>
+                </ng-template>
+            </p-table>
+            <!--End table-->
+        </div>
+
+         <!--Modal new or edit records-->
+        <p-dialog [(visible)]="modalDialog" 
+            styleClass="dlgCSS" 
+            [style]="{width: '450px'}" 
+            header="{{ 'general.ttlUsers' | translate }} 
+            {{ 'general.lblOf' | translate }}  
+            {{ 'title.sttUsers' | translate }}" 
+            [modal]="true" 
+            styleClass="p-fluid">
+                <ng-template pTemplate="body">
+                    
+                    <div class="field">
+                        <label for="name">{{ 'general.lblName' | translate }}</label>
+                        <input type="text" pInputText id="name" [(ngModel)]="record.name" 
+                            required autofocus />
+                    </div>
+
+                    <div class="field">
+                        <label for="description">{{ 'general.lblDescription' | translate }}</label>
+                        <textarea id="description" pInputTextarea [(ngModel)]="record.description" required rows="3" cols="20"></textarea>
+                    </div>
+
+                    <div class="field">
+                        <label class="mb-3">{{ 'general.lblCategory' | translate }}</label>
+                        
+                        <div class="formgrid grid">
+
+                            <div class="field-radiobutton col-6">
+                                <p-radioButton id="category1" name="category" value="Accessories" 
+                                [(ngModel)]="record.category"></p-radioButton>
+                                <label for="category1">Accessories</label>
+                            </div>
+
+                            <div class="field-radiobutton col-6">
+                                <p-radioButton id="category2" name="category" value="Clothing" 
+                                [(ngModel)]="record.category"></p-radioButton>
+                                <label for="category2">Clothing</label>
+                            </div>
+
+                            <div class="field-radiobutton col-6">
+                                <p-radioButton id="category3" name="category" value="Electronics" 
+                                [(ngModel)]="record.category"></p-radioButton>
+                                <label for="category3">Electronics</label>
+                            </div>
+
+                            <div class="field-radiobutton col-6">
+                                <p-radioButton id="category4" name="category" value="Fitness" 
+                                [(ngModel)]="record.category"></p-radioButton>
+                                <label for="category4">Fitness</label>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="formgrid grid">
+                        <div class="field col">
+                            <label for="price">{{ 'general.lblPrice' | translate }}</label>
+                            <p-inputNumber id="price" [(ngModel)]="record.price" 
+                                mode="currency" currency="USD" locale="en-US"></p-inputNumber>
+                        </div>
+                        <div class="field col">
+                            <label for="quantity">{{ 'general.lblQuantity' | translate }}</label>
+                            <p-inputNumber id="quantity" [(ngModel)]="record.quantity"></p-inputNumber>
+                        </div>
+                    </div>
+               
+                </ng-template>
+
+                <ng-template pTemplate="footer">
+                    <div style="text-align: center;">
+                        <button pButton pRipple label="{{ 'general.btnCancel' | translate }}" 
+                            icon="pi pi-times" class="p-button-danger mr-2 mb-2"  
+                            (click)="hideModalDialog()">
+                        </button>
+                        <button pButton pRipple label="{{ 'general.btnSave' | translate }}" 
+                            icon="pi pi-check" class="p-button-info mr-2 mb-2"  
+                            (click)="saveOrUpdate()">
+                        </button>
+                    </div>
+                </ng-template>
+          
+        </p-dialog>
+
+        <!--Modal configuration for code-->
+        <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+    </div>
+</div>

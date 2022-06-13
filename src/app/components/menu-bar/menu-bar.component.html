@@ -1,0 +1,52 @@
+<div class="card">
+  
+  <!--Año-->
+  <span class="p-float-label">
+    <p-multiSelect 
+      [options]="years" 
+      [(ngModel)]="selectedYearsAdvance" 
+      (Click)="inputAllMarket()"
+      optionLabel="name"      
+      [filter]="false"></p-multiSelect>
+    <label>
+      <i class="pi pi-fw pi-table"></i>      
+      Año
+    </label>
+  </span>
+
+  <!--Meses-->
+  <span class="p-float-label">
+    <p-multiSelect 
+      [options]="months" 
+      [(ngModel)]="selectedMonthsAdvanced" 
+      (Click)="inputAllMarket()"
+      optionLabel="name"      
+      [filter]="false"></p-multiSelect>
+    <label>
+      <i class="pi pi-calendar"></i>      
+      Mes
+    </label>
+  </span>
+
+  <!--usuarios-->
+  <span class="p-float-label">
+    <p-autoComplete [(ngModel)]="selectedUsers" [suggestions]="filterUsers" 
+                    (completeMethod)="filterUsersEvent($event)" field="name" [dropdown]="true">
+    </p-autoComplete>
+    <label>
+      <i class="pi pi-fw pi-user"></i>      
+      Usuarios
+    </label>
+  </span>
+ 
+</div>
+
+<!--<p-menubar [model]="tieredItems">
+    <ng-template pTemplate="end">
+        <span class="p-input-icon-right p-float-label">
+            <input type="text" pInputText>
+            <label>Search</label>
+            <i class="pi pi-search"></i>
+        </span>
+    </ng-template>
+  </p-menubar>  -->

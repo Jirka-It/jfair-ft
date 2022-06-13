@@ -1,0 +1,33 @@
+
+<div class="card overview-box flex flex-column pt-2" *ngIf="isSuccess">
+    <div class="flex align-items-center muted-text">
+        <i [ngClass]="['pi',icon]"></i>
+        <h6 class="m-0" [ngClass]="{'pl-2': !app.isRTL, 'pr-2': app.isRTL}">{{title}}</h6>
+        <div [ngClass]="{'ml-auto': !app.isRTL, 'mr-auto': app.isRTL}">
+            <a 
+            class="layout-topbar-action rounded-circle" 
+            (click)="menu1.toggle($event)" 
+            pRipple>
+                <i class="pi pi-ellipsis-h"></i>
+            </a>           
+
+            <p-menu #menu1 [popup]="true" [model]="[{label: 'Update', icon: 'pi pi-fw pi-refresh'},{label: 'Edit', icon: 'pi pi-fw pi-pencil'}]"></p-menu>
+        </div>
+    </div>
+    <div class="flex justify-content-between mt-3 flex-wrap">
+        <div class="flex flex-column" style="width: 80px">
+            <span class="mb-1 fs-xlarge">{{count}}</span>
+            <!--span class="overview-status p-1 teal-bgcolor fs-small">1420 Completed</span-->
+        </div>
+        <div class="flex align-items-end col-12">
+            <p-chart 
+                type="line" 
+                [data]="dataChart" 
+                [options]="overviewChartOptions1" 
+                responsive="true" 
+                height="80px" 
+                width="150px">
+            </p-chart>
+        </div>
+    </div>
+</div>

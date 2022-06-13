@@ -1,0 +1,56 @@
+{
+    "login": {
+      "login": "Iniciar",
+      "welcome": "Bienvenidos",
+      "please": "Por favor ingrese sus credenciales para iniciar sesión",
+      "email": "Correo",
+      "password": "Contraseña",
+      "btnLogin": "Acceder",
+      "dashboard": "Tablero"
+    },
+
+    "general": {
+      "btnNew": "Nuevo",
+      "btnSave": "Guardar",
+      "btnEdit": "Editar",
+      "btnCancel": "Cancelar",
+      "btnDelete": "Eliminar",
+      "btnImport": "Importar",
+      "btnExport": "Exportar",
+      "btnNo": "No",
+      "btnYes": "Si",
+      "txtSearch": "Buscar",
+      "tabCurrent": "Vigentes",
+      "tabRecord": "Historial",
+      "lblCode": "Código",
+      "lblName": "Nombre",
+      "lblDescription": "Descripción",
+      "lblState": "Estado",
+      "lblRequired": "es requerido",
+      "lblQuantity": "Cantidad",
+
+      "lblPrice": "Precio",
+      "lblCategory": "Categoria",
+      "lblReviews": "Reseñas",
+
+      "tblOption": "Opciones",
+      "tblTotal": "En total hay",
+      "tblRecords": "registros",
+      "tblShowings": "Mostrando",
+      "lblTo": "a",
+      "lblOf": "de",
+      
+      "msgDelete": "Está seguro de eliminar el registro?",
+      "conDelete": "Registro eliminado",
+      "conUpdate": "Registro actualizado",
+      "conSave": "Registro guardado",
+      "ttlUsers" : "Maestros",
+      "sttUsers" : "Usuarios",  
+      "ttlDelete" : "Eliminar",
+      "ttlSuccess" : "Exitoso",
+      "ttlError" : "Error"    
+
+      
+     
+    }
+  }

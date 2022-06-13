@@ -1,0 +1,18 @@
+<p-dialog     
+    [header]="header" 
+    [(visible)]="display" 
+    modal="modal" 
+    showEffect="fade" 
+    [style]="
+    {
+       width: '400px'       
+    }    
+    ">
+
+  <div style="line-height: 1.5">
+      {{message}}
+  </div>
+  <p-footer>
+      <button pButton pRipple type="button" (click)="display=false" label="{{buttonMessage}}" class="p-button-text"></button>      
+  </p-footer>
+</p-dialog>

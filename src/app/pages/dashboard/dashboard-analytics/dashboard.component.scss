@@ -1,0 +1,20 @@
+.failed{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  text-align: center;  
+  height: 150px; 
+  color: beige;
+
+  div {
+    margin-top: 10px;
+    h4{
+      color: crimson;
+    }
+    .pi {
+      font-size: 2rem!important;
+    }
+  }
+}

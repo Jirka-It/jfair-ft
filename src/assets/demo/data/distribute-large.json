@@ -1,0 +1,30 @@
+{
+    "data": [
+        {
+            "id": 1000,
+            "usuario": "James Butt",
+            "radicados":"5",
+            "solucionados": "3",
+            "cerrados": "20",
+            "promedio": "unqualified",
+            "calificacion": true,            
+            "representative": {
+                "name": "Ioni Bowcher",
+                "image": "ionibowcher.png"
+            }            
+        },       
+        {
+            "id": 1001,
+            "usuario": "James Butt",
+            "radicados":"56",
+            "solucionados": "4",
+            "cerrados": "21",
+            "promedio": "unqualified",
+            "calificacion": true,            
+            "representative": {
+                "name": "Isabel Bowcher",
+                "image": "ionibowcher.png"
+            }            
+        }       
+    ]
+}
