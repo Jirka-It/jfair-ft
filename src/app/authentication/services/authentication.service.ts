@@ -14,7 +14,7 @@ import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
 import { Router } from "@angular/router";
 
-import { environment } from "../../../environments/environment.prod";
+import { environment } from "../../../environments/environment";
 import LOCAL_DATA from "../../services/local-data";
 
 //Content type to request
@@ -40,10 +40,10 @@ const basicHeaders = new HttpHeaders()
 export class AuthenticationService
 {
   public user: any = null;
-  private server: string = environment.API_V1; //This variables is from enviroment.ts
+  private server: string = environment.API_URL;  
   private services =
   {
-    login:`${this.server}signin`
+    login:`${environment.oauthServer}`
   };
 
   public currentUser: any; //Variable to actual user logged  
@@ -54,8 +54,22 @@ export class AuthenticationService
 
   /***********************BASIC FUNCTIONS to LOGIN***************************** */
 
-  public loginJsugad (data){    
-    return this.http.post(this.services.login,data)
+  public sigIn (data){  
+    let headers = new HttpHeaders().set('Content-type', 'application/x-www-form-urlencoded; charset=utf-8')
+    .set('Authorization', 'Basic ' + btoa("my-client:my-secret"))      
+    let params = new URLSearchParams();
+    params.append('username', data['username']);
+    params.append('password', data['password']);
+    params.append('grant_type', data['grant_type']);
+    params.append('scope', data['scope']);
+    
+    return this.http.post(`${this.services['login']}/oauth/token`, params.toString(), {headers: headers})    
+    .map((resp) => 
+    {
+      this.saveToken(resp);
+      return resp;
+    })
+
   }
   /***********************BASIC FUNCTIONS to LOGIN***************************** */
 

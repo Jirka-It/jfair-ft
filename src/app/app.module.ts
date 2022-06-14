@@ -49,7 +49,7 @@ import { AuthGuard } from './authentication/auth.guard';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
-import { AppRoutingModuleNew } from './app-routing-new.module';
+import { AppRoutingModuleNew } from './app-routing.module';
 
 
  export function HttpLoaderFactory(httpClient: HttpClient) {

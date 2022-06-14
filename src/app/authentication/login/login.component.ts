@@ -75,10 +75,11 @@ export class LoginComponent implements OnInit
     this.modalDisplay = false;
     if(!this.formGroup.invalid){
       this.disableF();
-      this._auth.loginJsugad({
+      this._auth.sigIn({
         username:this.getUsername()['value'],//'444444sistema@inverfas.com.co',
         password:this.getPassword()['value'],//'111749284',
-        origin:'SUGAD'
+        grant_type:'password',
+        scope:'read'
       }).subscribe( 
         (resp:any) => {  
           console.log(resp)              

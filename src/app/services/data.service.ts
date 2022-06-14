@@ -8,7 +8,7 @@ import LOCAL_DATA from './local-data';
   providedIn: 'root'
 })
 export class DataService {
-  private server: string = environment.API_V1; //This variables is from enviroment.ts
+  private server: string = environment.API_URL; //This variables is from enviroment.ts
   private services = { countAnalytic:`${this.server}dashboards` };   
   constructor(
     private _http:HttpClient,

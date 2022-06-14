@@ -10,7 +10,7 @@ import { AuthenticationService } from 'src/app/authentication/services/authentic
 @Injectable({providedIn: 'root'})
 export class UsersService
 {
-  url = environment.API_V1;
+  url = environment.API_URL;
   httpOption = { headers: new HttpHeaders({
     'Content-Type': 'application/json',
    // Authorization: `Bearer ${this.authenticationService.getToken()}`
