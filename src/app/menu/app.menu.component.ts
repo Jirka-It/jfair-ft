@@ -18,15 +18,57 @@ export class AppMenuComponent implements OnInit {
     ngOnInit() {
         this.model = [
             {
-                label: 'Favorites', icon: 'pi pi-fw pi-home',
+                label: 'Gestion', icon: 'pi pi-fw pi-home',
                 items: [                  
                     {
-                        label: 'Dashboard Analytics', 
+                        label: 'Dashboard', 
                         icon: 'pi pi-fw pi-home',
-                        routerLink: ['administration/dashboard'], 
+                        routerLink: ['dashboard'], 
                         badge: '2', 
                         badgeClass: 'p-badge-success'
-                    }
+                    },
+                    {
+                        label: 'Eventos', 
+                        icon: 'pi pi-fw pi-money-bill',                        
+                        badgeClass: 'p-badge-success',
+                        items: [
+                            {
+                                label: 'Sala de Eventos',
+                                icon: 'pi pi-fw pi-plus',
+                                routerLink: ['eventos/rooms'],                         
+                            },
+                        ]
+                    },
+                    {
+                        label: 'Comercial', 
+                        icon: 'pi pi-fw pi-calendar',                                                                        
+                        badgeClass: 'p-badge-success',
+                        items: [
+                            {
+                                label: 'Expo',
+                                icon: 'pi pi-fw pi-plus',
+                                routerLink: ['comercial/expo'],                         
+                            },
+                        ]
+                    },
+                    {
+                        label: 'Configuración', 
+                        icon: 'pi pi-fw pi-cog',                                                
+                        badgeClass: 'p-badge-success',
+                        items: [
+                            {
+                                label: 'Sona de Stands',
+                                icon: 'pi pi-fw pi-plus',
+                                routerLink: ['configuracion/stands'],                         
+                            },
+                            {
+                                label: 'Servicios',
+                                icon: 'pi pi-fw pi-plus',
+                                routerLink: ['configuracion/servicios'],                         
+                            },
+                        ]
+                    },
+
                 ]
             },            
         ];

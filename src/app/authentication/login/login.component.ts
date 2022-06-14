@@ -96,7 +96,7 @@ export class LoginComponent implements OnInit
         ()=>{
           this.disableF();
           console.log('Completando servicios');
-          this.routes.navigate(['administration/dashboard']);
+          this.routes.navigate(['dashboard']);
         }
       );
     }

@@ -3,6 +3,10 @@
     "compileOnSave": false,
     "compilerOptions": {
         "baseUrl": "./",
+        "paths": {
+            "@app/*":["app/*"],
+            "@services/*":["app/services/*"]
+        },
         "outDir": "./dist/out-tsc",
         "forceConsistentCasingInFileNames": true,
         "strict": false,
@@ -19,7 +23,7 @@
         "lib": [
             "es2018",
             "dom"
-        ]
+        ]        
     },
     "angularCompilerOptions": {
         "enableI18nLegacyMessageIdFormat": false,

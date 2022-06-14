@@ -20,18 +20,7 @@ import {SplitterModule} from 'primeng/splitter';
 
 import {VirtualScrollerModule} from 'primeng/virtualscroller';
 
-import {AppCodeModule} from './app.code.component';
 import {AppComponent} from './app.component';
-import {AppMainComponent} from './app.main.component';
-import {AppConfigComponent} from './app.config.component';
-import {AppMenuComponent} from './app.menu.component';
-import {AppMenuitemComponent} from './app.menuitem.component';
-import {AppInlineMenuComponent} from './app.inlinemenu.component';
-import {AppRightMenuComponent} from './app.rightmenu.component';
-import {AppBreadcrumbComponent} from './app.breadcrumb.component';
-import {AppTopBarComponent} from './app.topbar.component';
-import {MenuService} from './menu/app.menu.service';
-import {AppBreadcrumbService} from './app.breadcrumb.service';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -50,6 +39,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 import { AppRoutingModuleNew } from './app-routing.module';
+import { MenuService } from './menu/app.menu.service';
 
 
  export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -85,7 +75,6 @@ FullCalendarModule.registerPlugins([
         SplitButtonModule,
         SplitterModule,
         VirtualScrollerModule,
-        AppCodeModule,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
@@ -96,19 +85,11 @@ FullCalendarModule.registerPlugins([
     ],
     declarations: [
         AppComponent,
-        AppMainComponent,
-        AppConfigComponent,
-        AppMenuComponent,
-        AppMenuitemComponent,
-        AppInlineMenuComponent,
-        AppRightMenuComponent,
-        AppBreadcrumbComponent,
-        AppTopBarComponent                    
     ],
     providers: [
         {provide: LocationStrategy, useClass: PathLocationStrategy},
-        MenuService, AppBreadcrumbService,CountryService, CustomerService, EventService,  NodeService,
-        PhotoService, ProductService, 
+        CountryService, CustomerService, EventService,  NodeService,
+        PhotoService, ProductService,MenuService, 
         AuthGuard
     ],
     bootstrap: [AppComponent]

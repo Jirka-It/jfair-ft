@@ -28,7 +28,7 @@ export class PagesComponent implements OnInit {
   currentInlineMenuKey: string;
   inlineMenuActive: any[] = [];
   inlineMenuClick: boolean;
-
+  
   constructor(public renderer: Renderer2, private menuService: MenuService, private primengConfig: PrimeNGConfig,
     public app: AppComponent) { }
 

@@ -11,6 +11,18 @@ export const PagesRoutingModule: Routes = [
         path: "dashboard",        
         loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)    
       },  
+      {
+        path: "eventos",        
+        loadChildren: () => import('./events/events.module').then(m => m.EventsModule)    
+      },
+      {
+        path: "comercial",        
+        loadChildren: () => import('./comercial/comercial.module').then(m => m.ComercialModule)    
+      },
+      {
+        path: "configuracion",        
+        loadChildren: () => import('./configuration/configuration.module').then(m => m.ConfigurationModule)    
+      },
     ]
   },
   {

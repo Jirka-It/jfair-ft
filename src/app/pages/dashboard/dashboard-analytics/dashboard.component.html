@@ -1,81 +1,9 @@
 <div class="grid p-fluid">
   
 </div>
+
 <div class="grid dashboard">
-  <div class="col-12">
-    <app-menu-bar ></app-menu-bar>
-  </div>
   
-  <!--Tarjetas de casos-->
-  <div class="col-12" *ngIf="loading_cards">      
-      <app-progress-section 
-      [TitleSection]="'Cargando Modulo: Numero de Casos'"
-      [Value]="loading_cards_progres"></app-progress-section>
-  </div>
-  <app-card-chart *ngFor="let item of items" class="col-12 md:col-6 lg:col-3"
-    [Title]="item.title"
-    [Count]="item.count"
-    [DataChart]="item.data"
-    [Symbol]="item.icon"
-    [Success]="card_success"
-  ></app-card-chart>
-
-  <div class="card col-12 overview-box flex flex-column pt-2 failed" *ngIf="!card_success">
-    <div class="flex align-items-center muted-text m0">
-      <h4>Error al cargar el componente</h4>
-    </div>
-    <div class="flex align-items-center muted-text m0">
-      <i class="pi pi-exclamation-circle"></i>
-    </div>
-    <div class="flex align-items-center muted-text m0">
-      <button class="p-ripple p-element p-button p-component" type="button" (click)="loadCardsCharts()">
-        <span class="p-button-label ng-star-inserted" >refrescar</span>
-      </button>
-    </div>
-  </div>
-
-
-
-
-  <!--Barras de meses-->
-  <div class="col-12" *ngIf="loading_bars_cards">      
-    <app-progress-section 
-    [TitleSection]="'Cargando Modulo: Distribucion de casos'"
-    [Value]="loading_bars_progres"></app-progress-section>
-  </div>
-  <div class="col-12"  *ngIf="!loading_bars_cards">
-    <app-card-chart-bars 
-    [Title]="'Distribución de casos'"></app-card-chart-bars>
-  </div>
-
-  <!-- Casos -->
-  <div class="col-12" *ngIf="loading_pie_cards">      
-    <app-progress-section 
-    [TitleSection]="'Cargando Modulo: Categorias de casos'"
-    [Value]="loading_pie_progres"></app-progress-section>
-  </div>
-  <div class="col-12 md:col-4" *ngFor="let item of itemsPie">
-    <card-chart-pie
-    [Title]="item.title"
-    [Donut]="item.donut"
-    [SemiCircle]="item.semiCircle"
-    [Data]="item.data"></card-chart-pie>
-  </div>
-
-  <!--Casos por usuarios-->
-  <div class="col-12" *ngIf="loading_timeline_cards">      
-    <app-progress-section 
-    [TitleSection]="'Cargando Modulo: Casos por usuario'"
-    [Value]="loading_timeline_progres"></app-progress-section>
-  </div>
-  <div class="col-12" *ngIf="!loading_timeline_cards">
-    <card-chart-timeline
-    [Title]="'Casos por Usuarios'"></card-chart-timeline>
-  </div>
-
-  <!--Tabla de usuarios-->
-  <div class="col-12">
-    <app-table></app-table>    
-  </div>
+ 
 
 </div>

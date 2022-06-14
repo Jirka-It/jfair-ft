@@ -27,7 +27,7 @@ export class DashboardComponent implements OnInit {
     private _dashboardService:  DashboardAnalyticsService) {
 
     this._breadcrumbService.setItems([
-      { label: 'Dashboard Analytics', routerLink: ['/administration/dashboard/'] }
+      { label: 'Dashboard Analytics', routerLink: ['/dashboard/'] }
     ]);
     
     this.loadCardsCharts();
