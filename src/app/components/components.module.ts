@@ -16,13 +16,11 @@ import {TabViewModule} from 'primeng/tabview';
 
 import { CardChartPieComponent } from './charts/card-chart-pie/card-chart-pie';
 import { CardChartTimeLineComponent } from './charts/card-chart-timeline/card-chart-timeline.component';
-import { TableComponent } from './table/table.component';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 @NgModule({
   declarations: [
     MenuBarComponent,
     CardChartComponent,
-    TableComponent,
     CardChartPieComponent,
     CardChartBarsComponent,
     CardChartTimeLineComponent
@@ -41,8 +39,7 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
     ButtonModule],
 
   exports: [CardChartComponent,
-    MenuBarComponent,
-    TableComponent,
+    MenuBarComponent,    
     CardChartPieComponent,
     CardChartBarsComponent,
     CardChartTimeLineComponent]  

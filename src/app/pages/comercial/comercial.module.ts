@@ -4,14 +4,25 @@ import { ComercialComponent } from './comercial.component';
 import { ExposicionesComponent } from './exposiciones/exposiciones.component';
 import { ComercialRoutingModule } from './comercial.routing';
 import { ComponentsModule } from 'src/app/components/components.module';
+import { TableCommercialModule } from './components/commercial-table/table-commercial.module';
+import { CommercialSectionService } from './services/commercial-section.service';
+import { CommercialSampleComponent } from './components/commercial-sample/commercial-sample.component';
+import { CommercialSampleModule } from './components/commercial-sample/commercial-sample.module';
 
 @NgModule({
     declarations: [
     ComercialComponent,
-    ExposicionesComponent,    
+    ExposicionesComponent,        
   ],
-    imports: [ CommonModule,ComercialRoutingModule,ComponentsModule ],
+    imports: [ 
+      CommonModule,
+      ComercialRoutingModule,
+      ComponentsModule,
+      CommercialSampleModule,
+      TableCommercialModule ],
     exports: [],
-    providers: [],
+    providers: [
+      CommercialSectionService
+    ],
 })
 export class ComercialModule {}

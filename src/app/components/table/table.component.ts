@@ -8,6 +8,7 @@ import { CustomerService } from 'src/app/demo/service/customerservice';
 })
 export class TableComponent implements OnInit {
   constructor() { }
+  //TODO cambiar nombres
   customers1: any[];
   customers2: any[];
   selectedCustomers1: any[];

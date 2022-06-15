@@ -1,0 +1,78 @@
+import { HttpParams } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { IComercial } from './commercial.metadata';
+import { CustomerService } from 'src/app/demo/service/customerservice';
+import { CommercialSectionService } from '../../services/commercial-section.service';
+enum TYPE_REGISTER {HISTORIAL=0,VIGENTE=1};
+
+@Component({
+  selector: 'app-table-commercial',
+  templateUrl: './table-commercial.component.html', 
+  
+})
+export class TableCommercialComponent implements OnInit {
+  constructor(
+    private commmercialSectionService: CommercialSectionService,
+  ) { }
+  //TODO cambiar nombres{}
+  commercialDataSource:IComercial[] = [];
+  historicalDataSource:IComercial[] = [];
+
+  customers1: any[];
+  customers2: any[];
+  selectedCustomers1: any[];
+  selectedCustomers2: any[];
+  tabMenuItems: any[];
+
+  ngOnInit(): void {
+    this.getSections(TYPE_REGISTER.VIGENTE  );
+    this.getSections(TYPE_REGISTER.HISTORIAL)
+    this.customers1 = [
+      
+    ]
+    this.customers2 = [
+      {
+        code:17,
+        name:'calips',
+        openDate:"2022-01-13",
+        closeDate:"2022-03-01",
+      },
+      {
+        code:3,
+        name:'ExpoCotelco',
+        openDate:"2022-02-25",
+        closeDate:"2022-06-14",
+      }
+    ]
+      // @ts-ignore
+    this.customers1.forEach(customer => {
+      customer.openDate = new  Date(customer.openDate)
+      customer.closeDate = new Date(customer.closeDate)    
+    });
+  
+   }
+   getSections(type:TYPE_REGISTER) {
+    let param = new HttpParams;
+    param = param.append('state', String(type));  
+    
+    this.commmercialSectionService.seach(param).subscribe(data => { 
+      type == TYPE_REGISTER.VIGENTE ? 
+      this.commercialDataSource = data.content :
+      this.historicalDataSource = data.content;
+      
+      this.fixedDates(type);
+        
+    });  
+   }
+   fixedDates(type:TYPE_REGISTER){
+    type == TYPE_REGISTER.VIGENTE ?
+    this.commercialDataSource.forEach(comercial => {
+      comercial.openDate = new  Date(comercial.openDate)
+      comercial.closeDate = new Date(comercial.closeDate)    
+    }) :
+    this.historicalDataSource.forEach(comercial => {
+      comercial.openDate = new  Date(comercial.openDate)
+      comercial.closeDate = new Date(comercial.closeDate)    
+    })       
+   }
+}

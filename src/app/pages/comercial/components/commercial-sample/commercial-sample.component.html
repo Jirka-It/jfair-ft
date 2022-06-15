@@ -1,0 +1,27 @@
+<p-card>
+  <ng-template pTemplate="header">
+    <h3>Muestra Comercial</h3>
+  </ng-template>
+  
+  <div class="grid p-fluid">
+    <span class="col-6 p-float-label">
+      <input id="float-input" type="text" pInputText> 
+      <label for="float-input">Nombre</label>
+    </span>
+    <span class="col-6 p-float-label">
+      <input id="float-input" type="text" pInputText> 
+      <label for="float-input">Slug</label>
+    </span>
+    <span class="col-6 p-float-label">
+      <p-editor [(ngModel)]="text" [style]="{'height':'320px'}">
+        
+      </p-editor>
+    </span>
+    
+</div>
+
+
+  <ng-template pTemplate="footer">
+    Footer content here
+  </ng-template>
+</p-card>

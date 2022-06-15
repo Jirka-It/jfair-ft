@@ -36,7 +36,9 @@ const basicHeaders = new HttpHeaders()
   .set("Content-type", "application/x-www-form-urlencoded; charset=utf-8")
   .set("Authorization", "Basic " + btoa("my-client:my-secret"));
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthenticationService
 {
   public user: any = null;
@@ -70,6 +72,11 @@ export class AuthenticationService
       return resp;
     })
 
+  }
+
+  getToken() 
+  {
+    return localStorage.getItem(this.localData.access_token);
   }
   /***********************BASIC FUNCTIONS to LOGIN***************************** */
 
@@ -106,7 +113,8 @@ export class AuthenticationService
 
   saveToken(token: any) {
     // This token is important to APIs with authentication
-    localStorage.setItem(this.localData.access_token, token);
+    console.log(token);
+    localStorage.setItem(this.localData.access_token, token.access_token);
   }
 
   setAffiliate(affiliate: any) {
@@ -248,6 +256,14 @@ export class AuthenticationService
       this.server + "/public/users" + "?" + params.toString(),
       httpOptions
     );
+  }
+
+  me() {
+    return this.http.get(`${this.server}/me`, httpOptions)
+    .map((resp) => 
+    {
+      return resp;
+    });
   }
 
 }

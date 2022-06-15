@@ -26,45 +26,6 @@ export class DashboardComponent implements OnInit {
     private _breadcrumbService: AppBreadcrumbService,
     private _dashboardService:  DashboardAnalyticsService) {
 
-    this._breadcrumbService.setItems([
-      { label: 'Dashboard Analytics', routerLink: ['/dashboard/'] }
-    ]);
-    
-    this.loadCardsCharts();
-
-    //Serivce cards bars
-    this.loading_bars_progres = 14;
-    const intervalTemp = setInterval(()=>{
-      this.loading_bars_progres = 100;
-      const loadInterval = setInterval( ()=>{
-        this.loading_bars_cards = false;
-        clearInterval(loadInterval);
-        clearInterval(intervalTemp);
-      },1000);
-    },1300)
-    
-    //Serivce cards pie
-    this.loading_pie_progres = 36;
-    const intervalTemp2 = setInterval(()=>{
-      this.loading_pie_progres = 100;
-      const intervalTemp = setInterval(()=>{
-        this.loading_pie_cards = false;
-        this.itemsPie = this._dashboardService.getChartPie();  //TODO convertir en un servicio cuando se tenga el endpoint
-        clearInterval(intervalTemp2);
-        clearInterval(intervalTemp);
-      },1000);
-    },1500);
-  
-    //service TimeLine
-    this.loading_timeline_progres = 46;
-    const intervalTemp3 = setInterval(()=>{
-      this.loading_timeline_progres = 100;
-      const intervalTemp = setInterval(()=>{
-        this.loading_timeline_cards = false;        
-        clearInterval(intervalTemp3);
-        clearInterval(intervalTemp);
-      },1000);
-    },1500);
 
    }
 

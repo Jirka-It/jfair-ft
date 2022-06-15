@@ -85,7 +85,13 @@ export class LoginComponent implements OnInit
           console.log(resp)              
           localStorage.setItem('username', 'admin');
           this._auth.setCurrentUser(resp);
-          this._auth.saveToken(resp.bearerToken);          
+          this._auth.saveToken(resp); 
+          this._auth.me().subscribe((data: any) => {           
+            this._auth.setCurrentUser(data);           
+          }, error => {
+            console.log('error en me')
+           
+          })         
         },
         err => { 
           console.log(err)                     
