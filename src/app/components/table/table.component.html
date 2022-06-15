@@ -1,129 +1,211 @@
 <div class="card">
-  <h5>Distribucion de Casos</h5>
-  
-        <p-table #dt 
-        [value]="customers1" 
-        [(selection)]="selectedCustomers1" 
-        dataKey="id"                 
-        styleClass="p-datatable-customers" 
-        [rowHover]="true" 
-        [rows]="10" 
-        [paginator]="true"
-        [filterDelay]="0" 
-        [globalFilterFields]="['usuario','Radicados','Solucionados','cerrados','promedio','calificacion']">
-            
+    
+<p-tabView>
+    <p-tabPanel header="Activos">
+       <p-table #dt 
+    [value]="customers1" 
+    [(selection)]="selectedCustomers1" 
+    dataKey="id"                 
+    styleClass="p-datatable-customers" 
+    [rowHover]="true" 
+    [rows]="10" 
+    [paginator]="true"
+    [filterDelay]="0" 
+    [globalFilterFields]="['code','name','openDate','closeDate','options']">
         
-
-            <ng-template pTemplate="header">
-                <tr>
-                    <th style="width: 3rem">
-                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                    </th>
-                    <th pSortableColumn="usuario">
+    
+    
+        <ng-template pTemplate="header">
+                <tr>                    
+                    <th pSortableColumn="code">
                         <div class="flex justify-content-between align-items-center">
-                            Usuario
-                            <p-sortIcon field="representative.name"></p-sortIcon>
-                            <p-columnFilter field="representative" matchMode="in" display="menu" [showMatchModes]="false" [showOperator]="false" [showAddButton]="false">
+                            Codigo                           
+                            <p-columnFilter field="code" matchMode="in" display="menu" [showMatchModes]="false" [showOperator]="false" [showAddButton]="false">
                               <ng-template pTemplate="header">
                                   <div class="px-3 pt-3 pb-0">
                                       <span class="font-bold">Agent Picker</span>
                                   </div>
-                              </ng-template>
-                              <ng-template pTemplate="filter" let-value let-filter="filterCallback">
-                                  <p-multiSelect [ngModel]="value" [options]="representatives" placeholder="Any" (onChange)="filter($event.value)" optionLabel="name">
-                                      <ng-template let-option pTemplate="item">
-                                          <div class="p-multiselect-representative-option">
-                                              <img [alt]="option.label" src="assets/demo/images/avatar/{{option.image}}" width="32" style="vertical-align: middle" />
-                                              <span class="ml-1">{{representative.name}}</span>
-                                          </div>
-                                      </ng-template>
-                                  </p-multiSelect>
-                              </ng-template>
-                          </p-columnFilter>
+                              </ng-template>                              
+                            </p-columnFilter>
                         </div>
                     </th>
 
-                    <th pSortableColumn="radicados">
+                    <th pSortableColumn="name">
                         <div class="flex justify-content-between align-items-center">
-                            Radicados
-                            <p-sortIcon field="radicados"></p-sortIcon>
-                            <p-columnFilter type="text" field="radicados" display="menu" class="ml-auto"></p-columnFilter>
+                            Evento
+                            <p-sortIcon field="name"></p-sortIcon>
+                            <p-columnFilter type="text" field="name" display="menu" class="ml-auto"></p-columnFilter>
                         </div>
                     </th>
 
-                    <th pSortableColumn="solucionados">
+                    <th pSortableColumn="openDate">
                         <div class="flex justify-content-between align-items-center">
-                          Solucionados
-                            <p-sortIcon field="solucionados"></p-sortIcon>
-                            <p-columnFilter type="text" field="solucionados" display="menu" class="ml-auto"></p-columnFilter>
+                          Apertura
+                            <p-sortIcon field="openDate"></p-sortIcon>
+                            <p-columnFilter type="text" field="openDate" display="menu" class="ml-auto"></p-columnFilter>
                            
                         </div>
                     </th>
-                    <th pSortableColumn="cerrados">
+                    <th pSortableColumn="closeDate">
                       <div class="flex justify-content-between align-items-center">
-                        Cerrados
-                          <p-sortIcon field="solucionados"></p-sortIcon>
-                          <p-columnFilter type="text" field="cerrados" display="menu" class="ml-auto"></p-columnFilter>
+                        Cierre
+                          <p-sortIcon field="closeDate"></p-sortIcon>
+                          <p-columnFilter type="text" field="closeDate" display="menu" class="ml-auto"></p-columnFilter>
                          
                       </div>
                   </th>
-                    <th pSortableColumn="promedio">
+                    <th pSortableColumn="options">
                         <div class="flex justify-content-between align-items-center">
-                            Promedio
-                            <p-sortIcon field="promedio"></p-sortIcon>
-                            <p-columnFilter type="text" field="promedio" display="menu" class="ml-auto"></p-columnFilter>
+                            Opciones                            
                         </div>
                     </th>
-                    <th pSortableColumn="calificacion">
-                        <div class="flex justify-content-between align-items-center">
-                            Calificacion Promedio
-                            <p-sortIcon field="calificacion"></p-sortIcon>
-                            <p-columnFilter type="text" field="calificacion" display="menu" class="ml-auto"></p-columnFilter>
-                        </div>
-                    </th>                                       
+                                                        
                     <th style="width: 8rem"></th>
                 </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-customer>
-                <tr class="p-selectable-row">
+        </ng-template>
+        <ng-template pTemplate="body" let-customer>
+            <tr class="p-selectable-row">             
                     <td>
-                        <p-tableCheckbox [value]="customer"></p-tableCheckbox>
+                      <span class="p-column-title">Codigos</span>                     
+                   
+                      <span class="image-text" style="margin-left: .5em;vertical-align: middle">{{customer.code}}</span>
                     </td>
                     <td>
-                      <span class="p-column-title">Usuario</span>
-                      <img [alt]="customer.representative.name"
-                           src="assets/demo/images/avatar/{{customer.representative.image}}" width="32"
-                           style="vertical-align: middle"/>
-                      <span class="image-text" style="margin-left: .5em;vertical-align: middle">{{customer.representative.name}}</span>
+                        <span class="p-column-title">Evento</span>                        
+                        {{customer.name}}
                     </td>
                     <td>
-                        <span class="p-column-title">Radicados</span>                        
-                        {{customer.radicados}}
+                      <span class="p-column-title">Apertura</span>                        
+                        {{customer.openDate | date}}
                     </td>
                     <td>
-                      <span class="p-column-title">Solucionados</span>                        
-                        {{customer.solucionados}}
-                    </td>
+                      <span class="p-column-title">Cierre</span>                        
+                      {{customer.closeDate | date}}
+                    </td>                                 
                     <td>
-                      <span class="p-column-title">Cerrados</span>                        
-                      {{customer.cerrados}}
-                    </td>
-                    <td>
-                      <span class="p-column-title">T. Promedio</span>                        
-                      {{customer.promedio}}
-                    </td>
-                    <td>
-                      <span class="p-column-title">Calificacion</span>                        
-                      {{customer.calificacion}}
-                    </td>
+                      <span class="p-column-title">Cierre</span>                        
+                      <button pButton pRipple type="button" icon="pi pi-pencil"    tooltipPosition="bottom" class="p-button-warning p-button-text mr-2 mb-2" pTooltip="Editar"></button>
+                      <button pButton pRipple type="button" icon="pi pi-map"       tooltipPosition="bottom" class="p-button-text mr-2 mb-2" pTooltip="Stands"></button>
+                      <button pButton pRipple type="button" icon="pi pi-envelope"  tooltipPosition="bottom" class="p-button-text mr-2 mb-2" pTooltip="Solicitudes"></button>
+                      <button pButton pRipple type="button" icon="pi pi-desktop"   tooltipPosition="bottom" class=" p-button-text mr-2 mb-2" pTooltip="Portal"></button>
+                      <button pButton pRipple type="button" icon="pi pi-sitemap"   tooltipPosition="bottom" class=" p-button-text mr-2 mb-2" pTooltip="Secciones"></button>
+                      <button pButton pRipple type="button" icon="pi pi-trash"     tooltipPosition="bottom" class="p-button-danger p-button-text mr-2 mb-2" pTooltip="Eliminar"></button>                                            
+                    </td>                                 
                  
                   
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="8">No customers found.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+    </p-tabPanel>
+    <p-tabPanel header="Historico">
+       <p-table #dt 
+    [value]="customers2" 
+    [(selection)]="selectedCustomers2" 
+    dataKey="id"                 
+    styleClass="p-datatable-customers" 
+    [rowHover]="true" 
+    [rows]="10" 
+    [paginator]="true"
+    [filterDelay]="0" 
+    [globalFilterFields]="['code','name','openDate','closeDate','options']">
+        
+    
+    
+        <ng-template pTemplate="header">
+                <tr>                    
+                    <th pSortableColumn="code">
+                        <div class="flex justify-content-between align-items-center">
+                            Codigo                           
+                            <p-columnFilter field="code" matchMode="in" display="menu" [showMatchModes]="false" [showOperator]="false" [showAddButton]="false">
+                              <ng-template pTemplate="header">
+                                  <div class="px-3 pt-3 pb-0">
+                                      <span class="font-bold">Agent Picker</span>
+                                  </div>
+                              </ng-template>                              
+                            </p-columnFilter>
+                        </div>
+                    </th>
+
+                    <th pSortableColumn="name">
+                        <div class="flex justify-content-between align-items-center">
+                            Evento
+                            <p-sortIcon field="name"></p-sortIcon>
+                            <p-columnFilter type="text" field="name" display="menu" class="ml-auto"></p-columnFilter>
+                        </div>
+                    </th>
+
+                    <th pSortableColumn="openDate">
+                        <div class="flex justify-content-between align-items-center">
+                          Apertura
+                            <p-sortIcon field="openDate"></p-sortIcon>
+                            <p-columnFilter type="text" field="openDate" display="menu" class="ml-auto"></p-columnFilter>
+                           
+                        </div>
+                    </th>
+                    <th pSortableColumn="closeDate">
+                      <div class="flex justify-content-between align-items-center">
+                        Cierre
+                          <p-sortIcon field="closeDate"></p-sortIcon>
+                          <p-columnFilter type="text" field="closeDate" display="menu" class="ml-auto"></p-columnFilter>
+                         
+                      </div>
+                  </th>
+                    <th pSortableColumn="options">
+                        <div class="flex justify-content-between align-items-center">
+                            Opciones                            
+                        </div>
+                    </th>
+                                                        
+                    <th style="width: 8rem"></th>
                 </tr>
-            </ng-template>
-            <ng-template pTemplate="emptymessage">
-                <tr>
-                    <td colspan="8">No customers found.</td>
-                </tr>
-            </ng-template>
-        </p-table>
+        </ng-template>
+        <ng-template pTemplate="body" let-customer>
+            <tr class="p-selectable-row">             
+                    <td>
+                      <span class="p-column-title">Codigos</span>                     
+                   
+                      <span class="image-text" style="margin-left: .5em;vertical-align: middle">{{customer.code}}</span>
+                    </td>
+                    <td>
+                        <span class="p-column-title">Evento</span>                        
+                        {{customer.name}}
+                    </td>
+                    <td>
+                      <span class="p-column-title">Apertura</span>                        
+                        {{customer.openDate | date}}
+                    </td>
+                    <td>
+                      <span class="p-column-title">Cierre</span>                        
+                      {{customer.closeDate | date}}
+                    </td>                                 
+                    <td>
+                      <span class="p-column-title">Cierre</span>                        
+                      <button pButton pRipple type="button" icon="pi pi-pencil"    tooltipPosition="bottom" class="p-button-warning p-button-text mr-2 mb-2" pTooltip="Editar"></button>
+                      <button pButton pRipple type="button" icon="pi pi-map"       tooltipPosition="bottom" class="p-button-text mr-2 mb-2" pTooltip="Stands"></button>
+                      <button pButton pRipple type="button" icon="pi pi-envelope"  tooltipPosition="bottom" class="p-button-text mr-2 mb-2" pTooltip="Solicitudes"></button>
+                      <button pButton pRipple type="button" icon="pi pi-desktop"   tooltipPosition="bottom" class=" p-button-text mr-2 mb-2" pTooltip="Portal"></button>
+                      <button pButton pRipple type="button" icon="pi pi-sitemap"   tooltipPosition="bottom" class=" p-button-text mr-2 mb-2" pTooltip="Secciones"></button>
+                      <button pButton pRipple type="button" icon="pi pi-trash"     tooltipPosition="bottom" class="p-button-danger p-button-text mr-2 mb-2" pTooltip="Eliminar"></button>                                            
+                    </td>                                 
+                 
+                  
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="8">No customers found.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+    </p-tabPanel>
+
+</p-tabView>
+
+
+    
 </div>
