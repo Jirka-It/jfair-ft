@@ -1,3 +1,5 @@
 
-<app-commercial-sample></app-commercial-sample>
-<app-table-commercial></app-table-commercial>
+<app-commercial-sample *ngIf="actualState('EDIT')" 
+(goBack)="defaultSummary()"
+[commercialId]="actualIdSelected"></app-commercial-sample>
+<app-table-commercial  *ngIf="actualState('SUMMARY')" (options)="commercialOptions($event)"></app-table-commercial>

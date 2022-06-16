@@ -1,5 +1,5 @@
 import { HttpParams } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output,EventEmitter } from '@angular/core';
 import { IComercial } from './commercial.metadata';
 import { CustomerService } from 'src/app/demo/service/customerservice';
 import { CommercialSectionService } from '../../services/commercial-section.service';
@@ -11,6 +11,7 @@ enum TYPE_REGISTER {HISTORIAL=0,VIGENTE=1};
   
 })
 export class TableCommercialComponent implements OnInit {
+  @Output('options') optionSelected:EventEmitter<any> = new EventEmitter();
   constructor(
     private commmercialSectionService: CommercialSectionService,
   ) { }
@@ -74,5 +75,9 @@ export class TableCommercialComponent implements OnInit {
       comercial.openDate = new  Date(comercial.openDate)
       comercial.closeDate = new Date(comercial.closeDate)    
     })       
+   }
+
+   openOptions(optionKey:string,idEvent:number){
+    this.optionSelected.emit(JSON.stringify({optionKey,idEvent}));
    }
 }

@@ -60,7 +60,8 @@
 
             <h5>AutoComplete</h5>
             <span class="p-float-label">
-                <p-autoComplete [(ngModel)]="selectedCountryAdvanced" [suggestions]="filteredCountries" styleClass="w-full"
+                <p-autoComplete [(ngModel)]="selectedCountryAdvanced" 
+                                [suggestions]="filteredCountries" styleClass="w-full"
                                 (completeMethod)="filterCountry($event)" field="name" [dropdown]="true">
                 </p-autoComplete>
                 <label>Choose a country</label>

@@ -1,24 +1,102 @@
 <p-card>
   <ng-template pTemplate="header">
-    <h3>Muestra Comercial</h3>
+    <h3>Editar</h3>
+    <button pButton pRipple type="button" label="Regresar" class="mr-2 mb-2" (click)="goBack()"></button>
   </ng-template>
+
   
-  <div class="grid p-fluid">
+  <form class="grid p-fluid" [formGroup]="formEdit">
     <span class="col-6 p-float-label">
-      <input id="float-input" type="text" pInputText> 
-      <label for="float-input">Nombre</label>
+      <input id="Name" formControlName="name" type="text" pInputText> 
+      <label for="Name">Nombre</label>
     </span>
     <span class="col-6 p-float-label">
-      <input id="float-input" type="text" pInputText> 
-      <label for="float-input">Slug</label>
+      <input id="Slug" formControlName="sigla" type="text" pInputText> 
+      <label for="Slug" >Slug</label>
     </span>
-    <span class="col-6 p-float-label">
-      <p-editor [(ngModel)]="text" [style]="{'height':'320px'}">
-        
+    <span class="col-12 p-float-label">
+      <span for="Resume">Resumen</span>
+      <p-editor id="Resume" formControlName="summary" [style]="{'height':'150px'}">        
       </p-editor>
     </span>
+
+    <span class="col-12 p-float-label">
+      <span for="Descripcion">Descripcion</span>
+      <p-editor id="Descripcion" formControlName="description" [style]="{'height':'150px'}">        
+      </p-editor>
+    </span>
+
+    <span class="col-12 p-float-label">
+      <span for="Terminos">Términos</span>
+      <p-editor id="Terminos" formControlName="terms" [style]="{'height':'150px'}">        
+      </p-editor>
+    </span>
+
+    <span class="col-6 p-float-label">
+      <p-calendar [showIcon]="true" inputId="icon" formControlName="openDate" styleClass="w-full"></p-calendar>
+      <label>Apertura</label>
+    </span>
+
+    <span class="col-6 p-float-label">
+      <p-calendar [showIcon]="true" inputId="icon" formControlName="closeDate" styleClass="w-full"></p-calendar>
+      <label>Cierre</label>
+    </span>
+
+    <span class="col-6 p-float-label">
+      <h4>Poster</h4>
+      <p-fileUpload 
+        url="#" 
+        (onUpload)="onUpload($event)"
+        multiple="multiple" accept="image/*" maxFileSize="1000000">
+        <ng-template pTemplate="content">
+          <ul *ngIf="uploadedFiles.length">
+            <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+          </ul>
+        </ng-template>
+      </p-fileUpload>
+    </span>
+
+    <span class="col-6 p-float-label">
+      <h4>Mapa</h4>
+      <p-fileUpload 
+        url="#" 
+        (onUpload)="onUpload($event)"
+        multiple="multiple" accept="image/*" maxFileSize="1000000">
+        <ng-template pTemplate="content">
+          <ul *ngIf="uploadedFiles.length">
+            <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+          </ul>
+        </ng-template>
+      </p-fileUpload>
+    </span>
+
+
+    <span class="col-6 p-float-label">
+      <span for="Plan">Plan</span>
+      <p-editor id="Plan" formControlName="plan" [style]="{'height':'150px'}">        
+      </p-editor>
+    </span>
+
+    <span class="col-6 p-float-label">
+      <span for="contacto">Contacto</span>
+      <p-editor id="contacto" formControlName="info" [style]="{'height':'150px'}">        
+      </p-editor>
+    </span>
+
+    <span class="col-2  p-float-label">
+      <h5>Color</h5>
+      <p-colorPicker formControlName="color"></p-colorPicker>
+    </span>
+    <span class="col-5 p-float-label">
+      <p-autoComplete [suggestions]="filteredEvents" styleClass="w-full"
+                      
+                      (completeMethod)="filterEvents($event)" field="Evento" [dropdown]="true">
+      </p-autoComplete>
+      <label>Evento</label>
+    </span>
     
-</div>
+
+</form>
 
 
   <ng-template pTemplate="footer">
