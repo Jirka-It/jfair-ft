@@ -1,6 +1,7 @@
 import { HttpHeaders, HttpParams } from '@angular/common/http';
 import { Component, Input, OnInit, Output,EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, NgForm } from '@angular/forms';
+import { timer } from 'rxjs';
 import { AuthenticationService } from 'src/app/authentication/services/authentication.service';
 import { environment } from 'src/environments/environment';
 import { CommercialSectionService } from '../../services/commercial-section.service';
@@ -26,7 +27,7 @@ export class CommercialSampleComponent implements OnInit {
   imagesUrl:any = {poster:'',image:'',map:''};
   imgPutUrl:string = `${environment.API_URL}/commercials`
   private server: string = environment.API_URL;
-
+  
   uploadedFiles: any[] = [];
   uploadedMap:   any[] = [];
   uploadedPoster:any[] = [];
@@ -96,8 +97,8 @@ export class CommercialSampleComponent implements OnInit {
   saveChanges(){}
   loadImg(data){
     this.imagesUrl['poster'] = data.urlPoster;
-    this.imagesUrl['image'] = data.urlImage;
-    this.imagesUrl['map'] = data.urlMap;
+    this.imagesUrl['image']  = data.urlImage;
+    this.imagesUrl['map']    = data.urlMap;
   }
   urlImg(data) {
     return this.server + data;
@@ -133,12 +134,16 @@ export class CommercialSampleComponent implements OnInit {
   onSelectImage(event){
     this.uploadedImage  = event['currentFiles'][0];
   }
-  prepareToSend(file){
+  uploadFile(file,typeImage,keyResponse){
+    console.log('Empezando a subir archivo');    
     const form = new FormData;
     form.append('fileitem', file, 'imagen.jpg');
-    this.commercialService.poster(form, this.commerical_id).subscribe(
-      data => {
-        //console.log(data);
+    this.commercialService[typeImage](form, this.commerical_id).subscribe(
+      data => {        
+        this.imagesUrl[typeImage] = null;
+        const eventDelay = timer(1000).subscribe( el => {
+          this.imagesUrl[typeImage] = data[keyResponse];
+        })
         console.log('subido')
       },
       error => {
@@ -146,30 +151,12 @@ export class CommercialSampleComponent implements OnInit {
         console.log('fallo');
       }
     );
-  }
-  uploadImage(event){
-    console.log('enviando imagen',event);
-    console.log(this.uploadedFiles);
-    
-    //this.commercialService.image(form, this.sample.id).subscribe(
-    //  data => {
-    //    //console.log(data);
-    //    this.toastr.success('Se ha cargado la imagen correctamente');
-    //    this.edit();
-    //    this.loadingPhoto = false;
-    //    this.loading = false;
-    //  },
-    //  error => {
-    //    //console.log(error);
-    //    this.toastr.error('Ha ocurrido un error cargando la imagen');
-    //    //console.log('no se subio', error);
-    //    this.loadingPhoto = false;
-    //    this.loading = false;
-    //  }
-    //);
-  }
+  } 
   onUpload(event){
-    console.log('subiendo archivo')
+    console.log('subiendo archivo' , event);
+  }
+  onProgress(event){
+    console.log('subiendo progreso' , event);
   }
 
 }

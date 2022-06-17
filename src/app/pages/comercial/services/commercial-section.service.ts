@@ -56,11 +56,11 @@ export class CommercialSectionService {
 
   image (data, id): Observable<any>
   {
-    return this._http.put<any>(this.services.commercials + '/image/' + id, data);
+    return this._http.put<any>(this.services.commercials + '/image/' + id, data,this.httpImgOpts);
   }
 
   map (data, id): Observable<any> {
-    return this._http.put<any>(this.services.commercials + '/map/' + id, data);
+    return this._http.put<any>(this.services.commercials + '/map/' + id, data,this.httpImgOpts);
   }
 
   poster (data, id): Observable<any>

@@ -50,11 +50,12 @@
         [uploadLabel]="'Enviar'"
         [chooseLabel]="'Cargar imagen'"
         [cancelLabel]="'Cancelar'"
-        (onSend)="uploadImage($event)" 
-        (onSelect)="onSelectPoster($event)"      
-        (onUpload)="onUpload($event)"
-        (onBeforeUpload)="prepareToSend(uploadedPoster)"
-        accept="image/*" maxFileSize="15000000">
+        [customUpload]="true"
+        (uploadHandler)="uploadFile(uploadedPoster,'poster','urlPoster')"          
+        (onSelect)="onSelectPoster($event)"                      
+        (onProgress)="onProgress($event)"
+        accept="image/*" 
+        maxFileSize="15000000">
         <ng-template pTemplate="content">          
           <ul *ngIf="uploadedFiles.length">
             <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
@@ -68,11 +69,17 @@
         <img [src]="urlImg(imagesUrl.map)" class="img-responsive">
       </div>
       <h4>Mapa</h4>
-      <p-fileUpload 
-        url="#" 
-        (onUpload)="onUpload($event)"
-        accept="image/*" maxFileSize="15000000">
-        <ng-template pTemplate="content">
+      <p-fileUpload                
+        [uploadLabel]="'Enviar'"
+        [chooseLabel]="'Cargar imagen'"
+        [cancelLabel]="'Cancelar'"
+        [customUpload]="true"
+        (uploadHandler)="uploadFile(uploadedMap,'map','urlMap')"          
+        (onSelect)="onSelectMap($event)"                      
+        (onProgress)="onProgress($event)"
+        accept="image/*" 
+        maxFileSize="15000000">
+        <ng-template pTemplate="content">          
           <ul *ngIf="uploadedFiles.length">
             <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
           </ul>
@@ -85,11 +92,17 @@
         <img [src]="urlImg(imagesUrl.image)" class="img-responsive">
       </div>    
       <h4>Imagen</h4>
-      <p-fileUpload 
-        url="#" 
-        (onUpload)="onUpload($event)"
-        accept="image/*" maxFileSize="15000000">
-        <ng-template pTemplate="content">
+      <p-fileUpload                
+        [uploadLabel]="'Enviar'"
+        [chooseLabel]="'Cargar imagen'"
+        [cancelLabel]="'Cancelar'"
+        [customUpload]="true"
+        (uploadHandler)="uploadFile(uploadedImage,'image','urlImage')"          
+        (onSelect)="onSelectImage($event)"                      
+        (onProgress)="onProgress($event)"
+        accept="image/*" 
+        maxFileSize="15000000">
+        <ng-template pTemplate="content">          
           <ul *ngIf="uploadedFiles.length">
             <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
           </ul>
