@@ -10,11 +10,19 @@ import { AuthenticationService } from 'src/app/authentication/services/authentic
 export class CommercialSectionService {
     private server: string = environment.API_URL;
     private services = { commercials: this.server + '/commercials' };
-    httpOpts: any = { headers: new HttpHeaders({
+    httpOpts: any = { 
+      headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         Authorization: `Bearer ${this._authService.getToken()}`
       })};
+
+    httpImgOpts: any = {       
+      headers: new HttpHeaders({        
+        'Accept': 'application/json',
+        Authorization: `Bearer ${this._authService.getToken()}`
+      })};
+     
     constructor 
     (
         private _http: HttpClient,
@@ -49,6 +57,15 @@ export class CommercialSectionService {
   image (data, id): Observable<any>
   {
     return this._http.put<any>(this.services.commercials + '/image/' + id, data);
+  }
+
+  map (data, id): Observable<any> {
+    return this._http.put<any>(this.services.commercials + '/map/' + id, data);
+  }
+
+  poster (data, id): Observable<any>
+  {            
+    return this._http.put<any>(this.services.commercials + '/poster/' + id, data,this.httpImgOpts);
   }
 
   downloads (id): Observable<any>

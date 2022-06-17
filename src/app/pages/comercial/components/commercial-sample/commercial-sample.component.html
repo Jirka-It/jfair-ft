@@ -2,8 +2,7 @@
   <ng-template pTemplate="header">
     <h3>Editar</h3>
     <button pButton pRipple type="button" label="Regresar" class="mr-2 mb-2" (click)="goBack()"></button>
-  </ng-template>
-
+  </ng-template>   
   
   <form class="grid p-fluid" [formGroup]="formEdit">
     <span class="col-6 p-float-label">
@@ -42,12 +41,37 @@
       <label>Cierre</label>
     </span>
 
-    <span class="col-6 p-float-label">
-      <h4>Poster</h4>
+    <span class="col-12 p-float-label">
+      <div class="preview-img col-md-4" *ngIf="imagesUrl.poster">
+        <img [src]="urlImg(imagesUrl.poster)" class="img-responsive">
+      </div>
+      <h4>Poster</h4>   
+      <p-fileUpload                
+        [uploadLabel]="'Enviar'"
+        [chooseLabel]="'Cargar imagen'"
+        [cancelLabel]="'Cancelar'"
+        (onSend)="uploadImage($event)" 
+        (onSelect)="onSelectPoster($event)"      
+        (onUpload)="onUpload($event)"
+        (onBeforeUpload)="prepareToSend(uploadedPoster)"
+        accept="image/*" maxFileSize="15000000">
+        <ng-template pTemplate="content">          
+          <ul *ngIf="uploadedFiles.length">
+            <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+          </ul>
+        </ng-template>
+      </p-fileUpload>
+    </span>
+
+    <span class="col-12 p-float-label">
+      <div class="preview-img col-md-4" *ngIf="imagesUrl.map">
+        <img [src]="urlImg(imagesUrl.map)" class="img-responsive">
+      </div>
+      <h4>Mapa</h4>
       <p-fileUpload 
         url="#" 
         (onUpload)="onUpload($event)"
-        multiple="multiple" accept="image/*" maxFileSize="1000000">
+        accept="image/*" maxFileSize="15000000">
         <ng-template pTemplate="content">
           <ul *ngIf="uploadedFiles.length">
             <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
@@ -56,12 +80,15 @@
       </p-fileUpload>
     </span>
 
-    <span class="col-6 p-float-label">
-      <h4>Mapa</h4>
+    <span class="col-12 p-float-label">
+      <div class="preview-img col-md-4" *ngIf="imagesUrl.image">
+        <img [src]="urlImg(imagesUrl.image)" class="img-responsive">
+      </div>    
+      <h4>Imagen</h4>
       <p-fileUpload 
         url="#" 
         (onUpload)="onUpload($event)"
-        multiple="multiple" accept="image/*" maxFileSize="1000000">
+        accept="image/*" maxFileSize="15000000">
         <ng-template pTemplate="content">
           <ul *ngIf="uploadedFiles.length">
             <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
@@ -88,11 +115,26 @@
       <p-colorPicker formControlName="color"></p-colorPicker>
     </span>
     <span class="col-5 p-float-label">
-      <p-autoComplete [suggestions]="filteredEvents" styleClass="w-full"
-                      
-                      (completeMethod)="filterEvents($event)" field="Evento" [dropdown]="true">
+      <p-autoComplete 
+        [suggestions]="filteredEvents" 
+        styleClass="w-full"                      
+        (completeMethod)="filterEvents($event)" 
+        dataKey="code"
+        formControlName="eventId"
+        field="name" [dropdown]="true">
       </p-autoComplete>
       <label>Evento</label>
+    </span>
+    
+    <span class="col-5 p-float-label">
+      <p-autoComplete 
+        [suggestions]="[{state:'Activo',value:1},{state:'Inactivo',value:0}]" 
+        styleClass="w-full"                               
+        dataKey="value"
+        formControlName="state"
+        field="state" [dropdown]="true">
+      </p-autoComplete>
+      <label>Activo</label>
     </span>
     
 

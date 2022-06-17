@@ -1,8 +1,11 @@
-import { HttpParams } from '@angular/common/http';
+import { HttpHeaders, HttpParams } from '@angular/common/http';
 import { Component, Input, OnInit, Output,EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, NgForm } from '@angular/forms';
+import { AuthenticationService } from 'src/app/authentication/services/authentication.service';
+import { environment } from 'src/environments/environment';
 import { CommercialSectionService } from '../../services/commercial-section.service';
 import { EventService } from '../../services/event.service';
+
 enum STATE {INACTIVE,ACTIVE};
 @Component({
   selector: 'app-commercial-sample',
@@ -11,16 +14,30 @@ enum STATE {INACTIVE,ACTIVE};
 })
 export class CommercialSampleComponent implements OnInit {
   @Input('commercialId') commerical_id:number;
-  @Input()     description:string = '';  
-  @Output('goBack') back:EventEmitter<any> = new EventEmitter();
-  formEdit:FormGroup;
+  @Input()               description:string = '';  
+  @Output('goBack')      back:EventEmitter<any> = new EventEmitter();
+  
+  headers = new HttpHeaders({ 'Content-Type': 'multipart/form-data',
+  'Accept': 'application/json',
+  Authorization: `Bearer ${this._authService.getToken()}`,
+  })
 
-  uploadedFiles:any[] = [];
+  formEdit:FormGroup;
+  imagesUrl:any = {poster:'',image:'',map:''};
+  imgPutUrl:string = `${environment.API_URL}/commercials`
+  private server: string = environment.API_URL;
+
+  uploadedFiles: any[] = [];
+  uploadedMap:   any[] = [];
+  uploadedPoster:any[] = [];
+  uploadedImage: any[] = [];
+
   eventsData = [];
   filteredEvents:any[] = [];
   
   constructor(
     private formBuilder: FormBuilder,
+    private _authService: AuthenticationService,
     private _eventService:EventService,
     private commercialService:CommercialSectionService
     ) { }
@@ -67,41 +84,92 @@ export class CommercialSampleComponent implements OnInit {
   }
   getFields(){
     this.commercialService.find(this.commerical_id).subscribe(
-      data => { this.initFormByObject(data);}
+      data => { 
+        this.loadImg(data);
+        this.initFormByObject(data);
+      }
     )
-  }
-  private getEventsAll(state: number)
-  {
-   
   }
   goBack(){
     this.back.emit();
   }
   saveChanges(){}
-  
-  filterEvents(event) {
-    this.filteredEvents = [{
-      name:'hola',
-      code:12
-    }];
+  loadImg(data){
+    this.imagesUrl['poster'] = data.urlPoster;
+    this.imagesUrl['image'] = data.urlImage;
+    this.imagesUrl['map'] = data.urlMap;
+  }
+  urlImg(data) {
+    return this.server + data;
+  }
+  filterEvents(event) {    
     let params = new HttpParams();
     params = params.append('state', String(STATE.ACTIVE));
     this._eventService.seach(params)
     .subscribe(data => {
-      const filter = [];
+      let filter = [];
       const query = event.query;      
       this.eventsData = data.content;
-      filter.push(...[this.eventsData.filter( item_event =>{ 
-        if( item_event.name
-          .toLowerCase()
-          .indexOf(query.toLowerCase())){
+      filter = [...this.eventsData.filter( item_event =>{ 
+        if( (item_event.name.toLowerCase())
+          .indexOf(query.toLowerCase()) >= 0){
             return {name:item_event.name,code:item_event.id}
           }else{
             return null;
           }
-        })]);             
-    });     
+        })]; 
+        this.filteredEvents = filter;            
+      });     
+      console.log(this.formEdit.get('eventId').value);
   }
-  onUpload(event){}
+
+  onSelectPoster(event){
+    this.uploadedPoster = event['currentFiles'][0];
+    console.log(this.uploadedPoster);
+  }
+  onSelectMap(event){
+    this.uploadedMap    = event['currentFiles'][0];
+  }
+  onSelectImage(event){
+    this.uploadedImage  = event['currentFiles'][0];
+  }
+  prepareToSend(file){
+    const form = new FormData;
+    form.append('fileitem', file, 'imagen.jpg');
+    this.commercialService.poster(form, this.commerical_id).subscribe(
+      data => {
+        //console.log(data);
+        console.log('subido')
+      },
+      error => {
+        //console.log(error);
+        console.log('fallo');
+      }
+    );
+  }
+  uploadImage(event){
+    console.log('enviando imagen',event);
+    console.log(this.uploadedFiles);
+    
+    //this.commercialService.image(form, this.sample.id).subscribe(
+    //  data => {
+    //    //console.log(data);
+    //    this.toastr.success('Se ha cargado la imagen correctamente');
+    //    this.edit();
+    //    this.loadingPhoto = false;
+    //    this.loading = false;
+    //  },
+    //  error => {
+    //    //console.log(error);
+    //    this.toastr.error('Ha ocurrido un error cargando la imagen');
+    //    //console.log('no se subio', error);
+    //    this.loadingPhoto = false;
+    //    this.loading = false;
+    //  }
+    //);
+  }
+  onUpload(event){
+    console.log('subiendo archivo')
+  }
 
 }
