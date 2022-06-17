@@ -1,6 +1,7 @@
 import { HttpHeaders, HttpParams } from '@angular/common/http';
 import { Component, Input, OnInit, Output,EventEmitter, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, NgForm } from '@angular/forms';
+import { MessageService } from 'primeng/api';
 import { FileUpload } from 'primeng/fileupload';
 import { timer } from 'rxjs';
 import { AuthenticationService } from 'src/app/authentication/services/authentication.service';
@@ -12,7 +13,8 @@ enum STATE {INACTIVE,ACTIVE};
 @Component({
   selector: 'app-commercial-sample',
   templateUrl: './commercial-sample.component.html',
-  styleUrls: ['./commercial-sample.component.scss']
+  styleUrls: ['./commercial-sample.component.scss'],
+  providers: [MessageService]
 })
 export class CommercialSampleComponent implements OnInit {
   @Input('commercialId') commerical_id:number;
@@ -34,9 +36,9 @@ export class CommercialSampleComponent implements OnInit {
   uploadedPoster:any[] = [];
   uploadedImage: any[] = [];
 
-  @ViewChild('uploadPoster')  upPoster:FileUpload;
-  @ViewChild('uploadMap')     upMap   :FileUpload;
-  @ViewChild('uploadImg')     upImg   :FileUpload;
+  @ViewChild('uploadMap')     upMap    :FileUpload;
+  @ViewChild('uploadImg')     upImg    :FileUpload;
+  @ViewChild('uploadPoster')  upPoster :FileUpload;
 
   eventsData = [];
   filteredEvents:any[] = [];
@@ -45,7 +47,9 @@ export class CommercialSampleComponent implements OnInit {
     private formBuilder: FormBuilder,
     private _authService: AuthenticationService,
     private _eventService:EventService,
-    private commercialService:CommercialSectionService
+    private commercialService:CommercialSectionService,
+    private serviceMessage: MessageService
+    
     ) { }
 
   ngOnInit() {
@@ -99,7 +103,52 @@ export class CommercialSampleComponent implements OnInit {
   goBack(){
     this.back.emit();
   }
-  saveChanges(){}
+  saveChanges(){
+    if(this.formEdit.valid) {
+      const formValues = this.formEdit.value;
+      const data = {
+        sigla:            formValues.sigla,
+        name:             formValues.name,
+        summary:          formValues.summary,
+        description:      formValues.description,
+        terms:            formValues.terms,
+        openDate:         formValues.openDate,
+        closeDate:        formValues.closeDate,
+        plan:             formValues.plan,
+        info:             formValues.info,
+        color:            formValues.color,
+        state:            formValues.state,
+        event: { eventId: formValues.eventId}
+      };
+      this.commercialService.update(
+        data,
+        this.commerical_id)
+      .subscribe(
+        data => {
+          this.goBack();
+          this.serviceMessage.add({ key: 'tst', severity: 'success', summary: 'Edicion completa', detail: 'Message sent' });
+          console.log('Datos Editados');
+        },
+        error => {
+          this.serviceMessage.add({ key: 'tst', severity: 'error', summary: 'Fallo de edicion', detail: 'Message sent' });
+          if (error.error.status === 500)
+          {
+            console.log('Fallo 1')
+            // swal('A ocurrido un error al procesar su solicitud', 'Error', 'error');
+            return;
+          }
+          if (error.error.status === 400)
+          {
+            console.log('Fallo 2')
+            // swal('A ocurrido un error al procesar su solicitud', 'Error', 'error');
+            return;
+          }
+        }
+      )
+    }else{
+      console.log('fallo');      
+    }
+  }
   loadImg(data){
     this.imagesUrl['poster'] = data.urlPoster;
     this.imagesUrl['image']  = data.urlImage;
@@ -128,7 +177,6 @@ export class CommercialSampleComponent implements OnInit {
       });     
       console.log(this.formEdit.get('eventId').value);
   }
-
   onSelectPoster(event){
     this.uploadedPoster = event['currentFiles'][0];
     console.log(this.uploadedPoster);
@@ -139,13 +187,13 @@ export class CommercialSampleComponent implements OnInit {
   onSelectImage(event){
     this.uploadedImage  = event['currentFiles'][0];
   }
-
   uploadHandler(file,typeImage,keyResponse,uploadController:FileUpload){
     console.log('Empezando a subir archivo');    
     const form = new FormData;
     form.append('fileitem', file, 'imagen.jpg');
     this.commercialService[typeImage](form, this.commerical_id).subscribe(
-      data => {        
+      data => { 
+        this.serviceMessage.add({ key: 'tst', severity: 'success', summary: 'Imagen cambiada', detail: 'Message sent' });       
         this.imagesUrl[typeImage] = null;
         const eventDelay = timer(1000).subscribe( el => {
           this.imagesUrl[typeImage] = data[keyResponse];

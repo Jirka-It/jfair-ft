@@ -9,6 +9,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { FileUploadModule } from 'primeng/fileupload';
 import { ColorPickerModule } from 'primeng/colorpicker';
 import { AutoCompleteModule } from 'primeng/autocomplete';
+import { ToastModule } from 'primeng/toast';
 @NgModule({
     declarations: [ CommercialSampleComponent],
     imports: [ 
@@ -20,7 +21,8 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
         CalendarModule,
         FileUploadModule,
         ColorPickerModule,
-        AutoCompleteModule
+        AutoCompleteModule,
+        ToastModule
      ],
     exports: [CommercialSampleComponent],
     providers: [],
