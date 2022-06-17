@@ -1,6 +1,7 @@
 import { HttpHeaders, HttpParams } from '@angular/common/http';
-import { Component, Input, OnInit, Output,EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output,EventEmitter, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, NgForm } from '@angular/forms';
+import { FileUpload } from 'primeng/fileupload';
 import { timer } from 'rxjs';
 import { AuthenticationService } from 'src/app/authentication/services/authentication.service';
 import { environment } from 'src/environments/environment';
@@ -32,6 +33,10 @@ export class CommercialSampleComponent implements OnInit {
   uploadedMap:   any[] = [];
   uploadedPoster:any[] = [];
   uploadedImage: any[] = [];
+
+  @ViewChild('uploadPoster')  upPoster:FileUpload;
+  @ViewChild('uploadMap')     upMap   :FileUpload;
+  @ViewChild('uploadImg')     upImg   :FileUpload;
 
   eventsData = [];
   filteredEvents:any[] = [];
@@ -134,7 +139,8 @@ export class CommercialSampleComponent implements OnInit {
   onSelectImage(event){
     this.uploadedImage  = event['currentFiles'][0];
   }
-  uploadFile(file,typeImage,keyResponse){
+
+  uploadHandler(file,typeImage,keyResponse,uploadController:FileUpload){
     console.log('Empezando a subir archivo');    
     const form = new FormData;
     form.append('fileitem', file, 'imagen.jpg');
@@ -151,6 +157,7 @@ export class CommercialSampleComponent implements OnInit {
         console.log('fallo');
       }
     );
+    uploadController.clear();
   } 
   onUpload(event){
     console.log('subiendo archivo' , event);

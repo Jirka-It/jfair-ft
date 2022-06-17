@@ -5,6 +5,34 @@
   </ng-template>   
   
   <form class="grid p-fluid" [formGroup]="formEdit">
+
+    <span class="col-1  p-float-label">      
+      <p-colorPicker formControlName="color"></p-colorPicker>
+    </span>
+    <span class="col-6 p-float-label">
+      <p-autoComplete 
+        [suggestions]="filteredEvents" 
+        styleClass="w-full"                      
+        (completeMethod)="filterEvents($event)" 
+        dataKey="code"
+        formControlName="eventId"
+        field="name" [dropdown]="true">
+      </p-autoComplete>
+      <label>Evento</label>
+    </span>
+    
+    <span class="col-5 p-float-label">
+      <p-autoComplete 
+        [suggestions]="[{state:'Activo',value:1},{state:'Inactivo',value:0}]" 
+        styleClass="w-full"                               
+        dataKey="value"
+        formControlName="state"
+        field="state" [dropdown]="true">
+      </p-autoComplete>
+      <label>Activo</label>
+    </span>
+
+
     <span class="col-6 p-float-label">
       <input id="Name" formControlName="name" type="text" pInputText> 
       <label for="Name">Nombre</label>
@@ -46,16 +74,15 @@
         <img [src]="urlImg(imagesUrl.poster)" class="img-responsive">
       </div>
       <h4>Poster</h4>   
-      <p-fileUpload                
+      <p-fileUpload                       
         [uploadLabel]="'Enviar'"
         [chooseLabel]="'Cargar imagen'"
         [cancelLabel]="'Cancelar'"
-        [customUpload]="true"
-        (uploadHandler)="uploadFile(uploadedPoster,'poster','urlPoster')"          
-        (onSelect)="onSelectPoster($event)"                      
-        (onProgress)="onProgress($event)"
+        [customUpload]="true"     
+        (onSelect)="onSelectPoster($event)"        
+        (uploadHandler)="uploadHandler(uploadedPoster,'poster','urlPoster',upPoster)"                          
         accept="image/*" 
-        maxFileSize="15000000">
+        maxFileSize="15000000" #uploadPoster>
         <ng-template pTemplate="content">          
           <ul *ngIf="uploadedFiles.length">
             <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
@@ -74,11 +101,10 @@
         [chooseLabel]="'Cargar imagen'"
         [cancelLabel]="'Cancelar'"
         [customUpload]="true"
-        (uploadHandler)="uploadFile(uploadedMap,'map','urlMap')"          
-        (onSelect)="onSelectMap($event)"                      
-        (onProgress)="onProgress($event)"
+        (onSelect)="onSelectMap($event)"          
+        (uploadHandler)="uploadHandler(uploadedMap,'map','urlMap',upMap)"                  
         accept="image/*" 
-        maxFileSize="15000000">
+        maxFileSize="15000000" #uploadMap>
         <ng-template pTemplate="content">          
           <ul *ngIf="uploadedFiles.length">
             <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
@@ -97,11 +123,11 @@
         [chooseLabel]="'Cargar imagen'"
         [cancelLabel]="'Cancelar'"
         [customUpload]="true"
-        (uploadHandler)="uploadFile(uploadedImage,'image','urlImage')"          
+        (uploadHandler)="uploadHandler(uploadedImage,'image','urlImage',upImg)"          
         (onSelect)="onSelectImage($event)"                      
         (onProgress)="onProgress($event)"
         accept="image/*" 
-        maxFileSize="15000000">
+        maxFileSize="15000000" #uploadImage>
         <ng-template pTemplate="content">          
           <ul *ngIf="uploadedFiles.length">
             <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
@@ -109,7 +135,6 @@
         </ng-template>
       </p-fileUpload>
     </span>
-
 
     <span class="col-6 p-float-label">
       <span for="Plan">Plan</span>
@@ -122,39 +147,13 @@
       <p-editor id="contacto" formControlName="info" [style]="{'height':'150px'}">        
       </p-editor>
     </span>
-
-    <span class="col-2  p-float-label">
-      <h5>Color</h5>
-      <p-colorPicker formControlName="color"></p-colorPicker>
-    </span>
-    <span class="col-5 p-float-label">
-      <p-autoComplete 
-        [suggestions]="filteredEvents" 
-        styleClass="w-full"                      
-        (completeMethod)="filterEvents($event)" 
-        dataKey="code"
-        formControlName="eventId"
-        field="name" [dropdown]="true">
-      </p-autoComplete>
-      <label>Evento</label>
-    </span>
-    
-    <span class="col-5 p-float-label">
-      <p-autoComplete 
-        [suggestions]="[{state:'Activo',value:1},{state:'Inactivo',value:0}]" 
-        styleClass="w-full"                               
-        dataKey="value"
-        formControlName="state"
-        field="state" [dropdown]="true">
-      </p-autoComplete>
-      <label>Activo</label>
-    </span>
-    
-
+       
 </form>
 
 
   <ng-template pTemplate="footer">
-    Footer content here
+    <div class="sapcer"></div>
+    <button pButton pRipple label="Cancelar" class="p-button-danger ml-3"  (click)="goBack()"></button>
+    <button pButton pRipple label="Guardar"  class="p-button-success ml-3" (click)="saveChanges()"></button>
   </ng-template>
 </p-card>
