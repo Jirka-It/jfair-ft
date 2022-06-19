@@ -13,7 +13,7 @@ import { ErrorHandlerService } from '../services/error-handler.service';
 })
 export class LoginComponent implements OnInit
 {
-  lang: string = "en";
+  lang: string = "es";
   public loading:number = 0;
   public disabledField:boolean = false;
   public formGroup:FormGroup;
@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit
     detail:''
   };
   constructor(
-      private routes: Router,
+      private routes: Router,      
       private _formBuilder:FormBuilder,
       private _auth:AuthenticationService,
       private _erroHandler:ErrorHandlerService,
@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit
     {
     //Traductor
     translate.addLangs(['en', 'fr']);
-    translate.setDefaultLang('en');
+    translate.setDefaultLang('es');
     const browserLang = translate.getBrowserLang();
     let lang = browserLang.match(/es|fr/) ? browserLang : 'en';
     this.changeLang(lang);
@@ -106,30 +106,8 @@ export class LoginComponent implements OnInit
         }
       );
     }
-    /*
-    const intervalo$ = new Observable( subs => 
-      {
-        const interval = setInterval(
-          () => console.log('viajando data'),
-          1000
-        );
-        return () => clearInterval(interval);
-      })
-    let subj$:Subject<any> = new Subject();
-    const intervalSubj = intervalo$.subscribe(subj$);
+  
 
-    setTimeout(()=>{
-      console.log('fin de los datos');
-      this.modalDisplay = true;
-      subj$.next('end');
-      subj$.complete();
-      intervalSubj.unsubscribe();
-      this.disableF();
-    }, 2500)*/
-    //        
-    //this.routes.navigate(['administration/dashboard']);
-    
-    
   }
 
   public disableF(){

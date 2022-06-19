@@ -3623,11 +3623,11 @@ body .p-overlay-badge .p-badge {
   }
 }
 .pages-body {
-  height: 100vh;
+  height: 100vh;  
 }
 .pages-body .topbar {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-  background-color: #1565C0;
+  background-color: var(--topbar-bg-color);
   z-index: 100;
 }
 .pages-body .topbar .topbar-left img {
