@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, LocationStrategy, PathLocationStrategy } from '@angular/common';
 
+
 import { ButtonModule } from 'primeng/button';
 import { RouterModule } from '@angular/router';
 import { MegaMenuModule } from 'primeng/megamenu';
@@ -14,6 +15,7 @@ import { AppInlineMenuComponent } from '../menu/app.inlinemenu.component';
 import { AppMenuitemComponent } from '../menu/app.menuitem.component';
 import { SharedModule } from '../shared/app-shared.module';
 import { AutoCompleteModule } from 'primeng/autocomplete';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,12 +25,13 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
     AppInlineMenuComponent,    
   ],
   imports: [
-    CommonModule,
-    ButtonModule,    
-    MegaMenuModule,    
-    ComponentsModule,
-    AutoCompleteModule,
+    FormsModule,    
     SharedModule,
+    CommonModule,
+    ButtonModule,
+    MegaMenuModule,    
+    ComponentsModule,    
+    AutoCompleteModule,
     RouterModule.forChild(PagesRoutingModule), 
   ] ,
   providers: [

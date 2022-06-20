@@ -5,18 +5,26 @@ import {AppComponent} from '../app.component';
     selector: 'app-menu',
     template: `    
         <ul class="layout-menu">
-            <li app-menuitem *ngFor="let item of model; let i = index;" [item]="item" [index]="i" [root]="true"></li>
+            <li app-menuitem (eventSelected)="isSelect($event)" *ngFor="let item of modelAdmin; let i = index;" [item]="item" [index]="i" [root]="true"></li>
+            <ng-container *ngIf="isEventSelected" #isSelectEvent>
+                <li app-menuitem *ngFor="let item of model; let i = index;" [item]="item" [index]="i" [root]="true"></li>
+            </ng-container>
+            
         </ul>
     `
 })
 export class AppMenuComponent implements OnInit {
 
     model: any[];
+    modelAdmin: any[];
+    isEventSelected:boolean = true;
 
     constructor(public app: AppComponent) {}
-
+    isSelect(event){
+        console.log(event);
+    }
     ngOnInit() {
-        this.model = [
+        this.modelAdmin = [
             {
                 label: 'Administración', icon: 'pi pi-fw pi-cog',                
                 items: [                  
@@ -34,17 +42,20 @@ export class AppMenuComponent implements OnInit {
                         selector:true
                     }
                 ],
-            },
+            }
+        ]
+        this.model = [            
+           
             {               
                 items: [                  
                     {
                         label: 'Informacion', 
-                        icon: 'pi pi-fw pi-info-circle',
+                        icon: 'pi pi-fw pi-plus',
                         routerLink: ['dashboard'],                                                 
                     },
                     {
                         label: 'Stands', 
-                        icon: 'pi pi-fw pi-calendar',                        
+                        icon: 'pi pi-fw pi-plus',
                         badgeClass: 'p-badge-success',
                         items: [
                             
@@ -52,21 +63,21 @@ export class AppMenuComponent implements OnInit {
                     },
                     {
                         label: 'Solicitudes', 
-                        icon: 'pi pi-fw pi-bell',                                                
+                        icon: 'pi pi-fw pi-plus',                                                
                         items: [
                             
                         ]
                     },
                     {
                         label: 'Secciones', 
-                        icon: 'pi pi-fw pi-table',                                                
+                        icon: 'pi pi-fw pi-plus',
                         items: [
                             
                         ]
                     },
                     {
                         label: 'Plano', 
-                        icon: 'pi pi-fw pi-map',                                                
+                        icon: 'pi pi-fw pi-plus',                                               
                         items: [
                             
                         ]

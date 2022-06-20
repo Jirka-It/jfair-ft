@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {NavigationEnd, Router} from '@angular/router';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {Subscription} from 'rxjs';
@@ -44,9 +44,10 @@ import { PagesComponent } from '../pages/pages.component';
                 <ng-template ngFor let-child let-i="index" [ngForOf]="item.items">
                     <li *ngIf="!child.selector" app-menuitem [item]="child" [index]="i" [parentKey]="key" [class]="child.badgeClass"></li>
                     <span class="p-float-label" *ngIf="child.selector">
-                        <p-autoComplete [(ngModel)]="selectedCountryAdvanced" 
-                                [suggestions]="filteredCountries" styleClass="w-full"
-                                (completeMethod)="filterCountry($event)" field="name" [dropdown]="true">
+                        <p-autoComplete 
+                                [(ngModel)]="selectEvent"                                
+                                [suggestions]="eventsFiltereds" styleClass="w-full"
+                                (completeMethod)="filterEvents($event)" field="name" [dropdown]="true">
                         </p-autoComplete>
                         <label>Selecciona un evento</label>
                     </span>
@@ -97,13 +98,20 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
 
     @Input() parentKey: string;
 
+    @Output() eventSelected = new EventEmitter();
+
     active = false;
 
+    
     menuSourceSubscription: Subscription;
-
+    
     menuResetSubscription: Subscription;
-
+    
     key: string;
+    
+    events:any[] = [{name:'expo-cotelco'},{name:'Outfist place'},{name:'remarked'}];
+    selectEvent:string;
+    eventsFiltereds:any[] = [];
 
     constructor(public app: PagesComponent, public router: Router, private cd: ChangeDetectorRef, private menuService: MenuService) {
         this.menuSourceSubscription = this.menuService.menuSource$.subscribe(key => {
@@ -141,6 +149,15 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
 
     updateActiveStateFromRoute() {
         this.active = this.router.isActive(this.item.routerLink[0], this.item.items ? false : true);
+    }
+
+    isEventSelected(){
+        this.eventSelected.emit(true);
+    }
+    filterEvents(event){
+        console.log(event);
+        this.eventsFiltereds = this.events.filter(filt => filt.name.indexOf(event.query.toLowerCase()) >= 0 );
+        console.log(this.selectEvent);
     }
 
     itemClick(event: Event) {

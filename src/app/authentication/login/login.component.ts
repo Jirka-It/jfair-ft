@@ -92,14 +92,7 @@ export class LoginComponent implements OnInit
           console.log(resp)              
           localStorage.setItem('username', 'admin');
           this._auth.setCurrentUser(resp);
-          this._auth.saveToken(resp); 
-          this._auth.me().subscribe((data: any) => {           
-            this._auth.setCurrentUser(data);           
-          }, error => {
-            this.disableF();
-            this.loading = false;  
-            this._toastr.error(this._erroHandler.handleErrorAuth(403,error.name,error.error['error'])['message'],'Error al iniciar la session');                        
-          })         
+          this._auth.saveToken(resp);               
         },
         err => {           
           this.disableF();
