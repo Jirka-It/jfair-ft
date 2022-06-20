@@ -6,7 +6,6 @@ import { ComercialRoutingModule } from './comercial.routing';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { TableCommercialModule } from './components/commercial-table/table-commercial.module';
 import { CommercialSectionService } from './services/commercial-section.service';
-import { CommercialSampleComponent } from './components/commercial-sample/commercial-sample.component';
 import { CommercialSampleModule } from './components/commercial-sample/commercial-sample.module';
 
 @NgModule({

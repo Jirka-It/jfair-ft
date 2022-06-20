@@ -4,8 +4,8 @@
 @import "../node_modules/prismjs/themes/prism-coy.css";
 @import "../node_modules/@fullcalendar/daygrid/main.min.css";
 @import "../node_modules/@fullcalendar/timegrid/main.min.css";
-@import "./appdemo.scss";
-
+@import "assets/theme/pink/theme-light.scss";
+@import '~ngx-toastr/toastr';
 .spacer{
   flex: 1 1 1 auto;
 }

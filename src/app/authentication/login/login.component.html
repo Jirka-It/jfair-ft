@@ -9,10 +9,10 @@
         
     </div>
 
-    <form autocomplete="off" [formGroup]="formGroup" class="align-self-center mt-auto mb-auto">
+    <form autocomplete="off" [formGroup]="formGroup" class="login align-self-center mt-auto mb-auto">
         <div class="pages-panel card flex flex-column">
-            <div class="pages-header px-3 py-1">
-                <h2>{{ 'login.login' | translate }}</h2>
+            <div class="pages-header">
+                <i class="pi pi-user"></i>
             </div>
 
             <h4>{{ 'login.welcome' | translate }}</h4>
@@ -25,7 +25,8 @@
                         <i class="pi pi-envelope"></i>
                     </span>
                     <span class="p-float-label">
-                        <input                         
+                        <input     
+                        (keydown.enter)="login()"                    
                         type="text" 
                         id="email" 
                         formControlName="username" 
@@ -42,6 +43,7 @@
                     </span>
                     <span class="p-float-label">
                         <input 
+                        (keydown.enter)="login()"
                         type="password" 
                         id="password" 
                         formControlName="password" 
@@ -81,6 +83,10 @@
     [buttonMessage]="'Aceptar'"
     [display]="modalDisplay"
     ></app-modal-->
+    <ngx-loading
+    [show]="loading"
+    [config]="{ backdropBorderRadius: '3px' }"    
+  ></ngx-loading>
     <app-toast
         [message]="modalError.message"
         [display]="modalDisplay">

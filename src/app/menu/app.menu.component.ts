@@ -18,39 +18,83 @@ export class AppMenuComponent implements OnInit {
     ngOnInit() {
         this.model = [
             {
-                label: 'Gestion', icon: 'pi pi-fw pi-home',
+                label: 'Administración', icon: 'pi pi-fw pi-cog',                
                 items: [                  
                     {
-                        label: 'Dashboard', 
-                        icon: 'pi pi-fw pi-home',
-                        routerLink: ['dashboard'], 
-                        badge: '2', 
-                        badgeClass: 'p-badge-success'
+                        label: 'Nuevo evento', 
+                        icon: 'pi pi-fw pi-plus',
+                        routerLink: ['dashboard'],                                                 
                     },
                     {
                         label: 'Eventos', 
-                        icon: 'pi pi-fw pi-money-bill',                        
+                        icon: 'pi pi-fw pi-plus',
+                        routerLink: ['dashboard'],                                                 
+                    },
+                    {
+                        selector:true
+                    }
+                ],
+            },
+            {               
+                items: [                  
+                    {
+                        label: 'Informacion', 
+                        icon: 'pi pi-fw pi-info-circle',
+                        routerLink: ['dashboard'],                                                 
+                    },
+                    {
+                        label: 'Stands', 
+                        icon: 'pi pi-fw pi-calendar',                        
                         badgeClass: 'p-badge-success',
                         items: [
-                            {
-                                label: 'Sala de Eventos',
-                                icon: 'pi pi-fw pi-plus',
-                                routerLink: ['eventos/rooms'],                         
-                            },
+                            
                         ]
                     },
                     {
-                        label: 'Comercial', 
-                        icon: 'pi pi-fw pi-calendar',                                                                        
-                        badgeClass: 'p-badge-success',
+                        label: 'Solicitudes', 
+                        icon: 'pi pi-fw pi-bell',                                                
                         items: [
-                            {
-                                label: 'Expo',
-                                icon: 'pi pi-fw pi-plus',
-                                routerLink: ['comercial/expo'],                         
-                            },
+                            
                         ]
                     },
+                    {
+                        label: 'Secciones', 
+                        icon: 'pi pi-fw pi-table',                                                
+                        items: [
+                            
+                        ]
+                    },
+                    {
+                        label: 'Plano', 
+                        icon: 'pi pi-fw pi-map',                                                
+                        items: [
+                            
+                        ]
+                    },
+                    //{
+                    //    label: 'Eventos', 
+                    //    icon: 'pi pi-fw pi-money-bill',                        
+                    //    badgeClass: 'p-badge-success',
+                    //    items: [
+                    //        {
+                    //            label: 'Sala de Eventos',
+                    //            icon: 'pi pi-fw pi-plus',
+                    //            routerLink: ['eventos/rooms'],                         
+                    //        },
+                    //    ]
+                    //},
+                    //{
+                    //    label: 'Comercial', 
+                    //    icon: 'pi pi-fw pi-calendar',                                                                        
+                    //    badgeClass: 'p-badge-success',
+                    //    items: [
+                    //        {
+                    //            label: 'Expo',
+                    //            icon: 'pi pi-fw pi-plus',
+                    //            routerLink: ['comercial/expo'],                         
+                    //        },
+                    //    ]
+                    //},
                     {
                         label: 'Configuración', 
                         icon: 'pi pi-fw pi-cog',                                                

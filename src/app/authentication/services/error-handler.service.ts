@@ -19,6 +19,8 @@ private findStatusErrors(status:number):string{
   switch (status) {
     case 404: return 'Recurso no encontrado';
     case 403: return 'Credenciales invalidas';
+    case 400: return 'Credenciales invalidas';
+    case -1: return 'Los campos deben ser completados con informacion valida';
     case 500: return 'Fallo del servidor';
     default: return 'Imposible conectar con el servidor';      
   }

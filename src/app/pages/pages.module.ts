@@ -13,6 +13,7 @@ import { AppMenuComponent } from '../menu/app.menu.component';
 import { AppInlineMenuComponent } from '../menu/app.inlinemenu.component';
 import { AppMenuitemComponent } from '../menu/app.menuitem.component';
 import { SharedModule } from '../shared/app-shared.module';
+import { AutoCompleteModule } from 'primeng/autocomplete';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { SharedModule } from '../shared/app-shared.module';
     ButtonModule,    
     MegaMenuModule,    
     ComponentsModule,
+    AutoCompleteModule,
     SharedModule,
     RouterModule.forChild(PagesRoutingModule), 
   ] ,

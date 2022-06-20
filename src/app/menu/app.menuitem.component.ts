@@ -9,11 +9,19 @@ import { PagesComponent } from '../pages/pages.component';
 @Component({
     /* tslint:disable:component-selector */
     selector: '[app-menuitem]',
+    styles:[`
+    span.p-autocomplete{
+        height:20px!important;
+    }
+    `],
     /* tslint:enable:component-selector */
-    template: `
+    template: `            
         <ng-container>
             <div *ngIf="root && item.visible !== false">
-                <span class="layout-menuitem-text">{{item.label}}</span>
+                <i [class]="item.icon"></i>
+                <span class="layout-menuitem-text">
+                    {{item.label}}
+                </span>
             </div>
             <a [attr.href]="item.url" (click)="itemClick($event)" *ngIf="(!item.routerLink || item.items) && item.visible !== false" (keydown.enter)="itemClick($event)"
                [attr.target]="item.target" [attr.tabindex]="0" [ngClass]="item.class" (mouseenter)="onMouseEnter()" pRipple
@@ -34,10 +42,19 @@ import { PagesComponent } from '../pages/pages.component';
             </a>
             <ul *ngIf="((item.items && root) || (item.items && active)) && item.visible !== false" [@children]="root ? 'visible' : active ? 'visibleAnimated' : 'hiddenAnimated'">
                 <ng-template ngFor let-child let-i="index" [ngForOf]="item.items">
-                    <li app-menuitem [item]="child" [index]="i" [parentKey]="key" [class]="child.badgeClass"></li>
+                    <li *ngIf="!child.selector" app-menuitem [item]="child" [index]="i" [parentKey]="key" [class]="child.badgeClass"></li>
+                    <span class="p-float-label" *ngIf="child.selector">
+                        <p-autoComplete [(ngModel)]="selectedCountryAdvanced" 
+                                [suggestions]="filteredCountries" styleClass="w-full"
+                                (completeMethod)="filterCountry($event)" field="name" [dropdown]="true">
+                        </p-autoComplete>
+                        <label>Selecciona un evento</label>
+                    </span>
+                                        
                 </ng-template>
-            </ul>
+            </ul>            
         </ng-container>
+        
     `,
     host: {
         '[class.layout-root-menuitem]': 'root || active',

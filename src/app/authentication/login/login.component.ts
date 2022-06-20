@@ -5,16 +5,19 @@ import { AuthenticationService } from '../services/authentication.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { ErrorHandlerService } from '../services/error-handler.service';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  providers:[ToastrService]
 })
 export class LoginComponent implements OnInit
 {
   lang: string = "es";
-  public loading:number = 0;
+  public loading:boolean = false;
   public disabledField:boolean = false;
   public formGroup:FormGroup;
 
@@ -29,6 +32,7 @@ export class LoginComponent implements OnInit
       private _formBuilder:FormBuilder,
       private _auth:AuthenticationService,
       private _erroHandler:ErrorHandlerService,
+      private _toastr: ToastrService,
       public translate: TranslateService)
     {
     //Traductor
@@ -40,8 +44,9 @@ export class LoginComponent implements OnInit
   
     //FormGroup
     this.formGroup = this._formBuilder.group({
-      'username':['',
+      'username':['',[
         Validators.required,
+        Validators.email]
       ],
       'password':['',
         Validators.required,
@@ -71,10 +76,12 @@ export class LoginComponent implements OnInit
  
 
   public login()
-  {
-    this.modalDisplay = false;
-    if(!this.formGroup.invalid){
-      this.disableF();
+  {                    
+    this.loading = true;
+
+    if(!this.formGroup.invalid){   
+      this.modalDisplay = false;
+      this.disableF();   
       this._auth.sigIn({
         username:this.getUsername()['value'],//'444444sistema@inverfas.com.co',
         password:this.getPassword()['value'],//'111749284',
@@ -89,24 +96,26 @@ export class LoginComponent implements OnInit
           this._auth.me().subscribe((data: any) => {           
             this._auth.setCurrentUser(data);           
           }, error => {
-            console.log('error en me')
-           
+            this.disableF();
+            this.loading = false;  
+            this._toastr.error(this._erroHandler.handleErrorAuth(403,error.name,error.error['error'])['message'],'Error al iniciar la session');                        
           })         
         },
-        err => { 
-          console.log(err)                     
-          this.modalError = this._erroHandler.handleErrorAuth(err.status,err.name,err.error['error']);
-          this.modalDisplay = true;
+        err => {           
           this.disableF();
+          this.loading =false;
+          this._toastr.error(this._erroHandler.handleErrorAuth(err.status,err.name,err.error['error'])['message'],'Error al enviar la peticion',);          
         },
         ()=>{
           this.disableF();
+          this.loading = false; 
           console.log('Completando servicios');
           this.routes.navigate(['dashboard']);
         }
       );
+    }else{   
+      this.isFormEmpy();      
     }
-  
 
   }
 
@@ -121,6 +130,14 @@ export class LoginComponent implements OnInit
     }
   }
 
+  isFormEmpy(){
+    if(this.getUsername().valid){
+      this._toastr.warning(this._erroHandler.handleErrorAuth(-1,'invalid','Invalid form')['message'],'Error en el Formulario');             
+    }else{
+      this._toastr.warning('Debe ingresar un correo valido','Error en el Formulario');             
+    }
+    this.loading = false;
+  }
 
 
 }

@@ -22,29 +22,6 @@
     <div class="layout-topbar-actions-right">      
       <ul class="layout-topbar-items">
 
-        <!-- Search -->
-        <li class="layout-topbar-item layout-search-item">
-          
-          <!--Icon search button-->
-          <a class="layout-topbar-action rounded-circle" (click)="pagesMain.onTopbarItemClick($event, 'search')" pRipple>
-              <i class="pi pi-search fs-large"></i>
-          </a>
-
-          <!--Input field search-->
-          <div class="layout-search-panel p-inputgroup" [@topbarActionPanelAnimation]="'visible'" *ngIf="pagesMain.search" (@topbarActionPanelAnimation.done)="onSearchAnimationEnd($event)">
-               
-              <!--IconSearch-->              
-              <span class="p-inputgroup-addon"><i class="pi pi-search"></i></span>              
-              <!--Input Search-->
-              <input #searchInput type="text" pInputText placeholder="Search" (click)="pagesMain.searchClick = true;" (keydown)="pagesMain.onSearchKeydown($event)"> 
-              <span class="p-inputgroup-addon">
-                  <button pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-text p-button-plain" (click)="pagesMain.onTopbarItemClick($event, 'search')"></button>
-              </span>
-
-          </div>
-
-        </li>
-
         <!--Notification-->
         <li class="layout-topbar-item notifications">
           
@@ -167,7 +144,7 @@
               <img src="assets/demo/images/avatar/amyelsner.png" alt="avatar" style="width: 32px; height: 32px;">
           </a>
 
-          <ul class="layout-topbar-action-panel shadow-6" [@topbarActionPanelAnimation]="'visible'" *ngIf="pagesMain.activeTopbarItem === 'profile'">
+          <ul class="layout-topbar-action-panel shadow-6 user-menu" [@topbarActionPanelAnimation]="'visible'" *ngIf="pagesMain.activeTopbarItem === 'profile'">
               <li class="layout-topbar-action-item">
                   <a class="flex flex-row align-items-center" pRipple>
                       <i class="pi pi-cog" [ngClass]="{'mr-2': !app.isRTL, 'ml-2': app.isRTL}"></i>
@@ -195,13 +172,6 @@
           </ul>
         </li>
         
-        <!--Arrow-->
-        <li class="layout-topbar-item">
-          <a class="layout-topbar-action rounded-circle" (click)="pagesMain.onRightMenuButtonClick($event)" pRipple>
-              <i class="pi fs-large" [ngClass]="{'pi-arrow-left': !app.isRTL, 'pi-arrow-right': app.isRTL}"></i>
-          </a>
-        </li>
-
       </ul>
     </div>
 

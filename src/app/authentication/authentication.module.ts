@@ -16,7 +16,7 @@ import {CardModule} from 'primeng/card';
 import {CheckboxModule} from 'primeng/checkbox';
 import {ChipModule} from 'primeng/chip';
 import {ChipsModule} from 'primeng/chips';
-
+import { NgxLoadingModule } from "ngx-loading";
 
 
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -25,7 +25,7 @@ import { HttpClient } from '@angular/common/http';
 import { AuthenticationService } from './services/authentication.service';
 import { SharedModule } from '../shared/app-shared.module';
 import { ProgressBarModule } from 'primeng/progressbar';
-
+import { ToastrModule } from 'ngx-toastr';
  export function HttpLoaderFactory(httpClient: HttpClient) {
     return new TranslateHttpLoader(httpClient);
  }
@@ -51,6 +51,8 @@ import { ProgressBarModule } from 'primeng/progressbar';
     ProgressBarModule,
     AutoCompleteModule,
     ReactiveFormsModule,
+    ToastrModule.forRoot({}),
+    NgxLoadingModule.forRoot({}),
     TranslateModule.forRoot({
       loader: {
           provide: TranslateLoader,
