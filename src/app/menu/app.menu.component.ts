@@ -31,12 +31,13 @@ export class AppMenuComponent implements OnInit {
                     {
                         label: 'Nuevo evento', 
                         icon: 'pi pi-fw pi-plus',
-                        routerLink: ['dashboard'],                                                 
+                        routerLink: ['eventos/new'],
                     },
                     {
                         label: 'Eventos', 
                         icon: 'pi pi-fw pi-plus',
-                        routerLink: ['dashboard'],                                                 
+                        routerLink: ['eventos/new'],
+                                                                         
                     },
                     {
                         selector:true
@@ -112,7 +113,7 @@ export class AppMenuComponent implements OnInit {
                         badgeClass: 'p-badge-success',
                         items: [
                             {
-                                label: 'Sona de Stands',
+                                label: 'Zonas',
                                 icon: 'pi pi-fw pi-plus',
                                 routerLink: ['configuracion/stands'],                         
                             },
