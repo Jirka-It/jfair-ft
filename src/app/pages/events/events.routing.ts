@@ -1,10 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { EventsRoomsComponent } from './events-rooms/events-rooms.component';
+import { CreateEventComponent } from './create-event/create-event.component';
+import { EventsComponent } from './events.component';
 
 const routes: Routes = [
-    { path: 'rooms', component: EventsRoomsComponent }
+    { 
+        path: '', component: EventsComponent, 
+        children:[
+            { path: 'new', component: CreateEventComponent }
+        ]
+    }
 ];
 
 @NgModule({
