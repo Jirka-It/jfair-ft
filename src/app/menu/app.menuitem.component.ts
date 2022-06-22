@@ -5,6 +5,8 @@ import {Subscription} from 'rxjs';
 import {filter} from 'rxjs/operators';
 import {MenuService} from './app.menu.service';
 import { PagesComponent } from '../pages/pages.component';
+import { CommercialSectionService } from '../pages/comercial/services/commercial-section.service';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
     /* tslint:disable:component-selector */
@@ -13,6 +15,7 @@ import { PagesComponent } from '../pages/pages.component';
     span.p-autocomplete{
         height:20px!important;
     }
+
     `],
     /* tslint:enable:component-selector */
     template: `            
@@ -43,9 +46,9 @@ import { PagesComponent } from '../pages/pages.component';
             <ul *ngIf="((item.items && root) || (item.items && active)) && item.visible !== false" [@children]="root ? 'visible' : active ? 'visibleAnimated' : 'hiddenAnimated'">
                 <ng-template ngFor let-child let-i="index" [ngForOf]="item.items">
                     <li *ngIf="!child.selector" app-menuitem [item]="child" [index]="i" [parentKey]="key" [class]="child.badgeClass"></li>
-                    <span class="p-float-label" *ngIf="child.selector">
+                    <span id="Selector" class="mt-5 p-float-label" *ngIf="child.selector">
                         <p-autoComplete 
-                                [(ngModel)]="selectEvent"                                
+                                [(ngModel)]="selectEvent"                                    
                                 [suggestions]="eventsFiltereds" styleClass="w-full"
                                 (completeMethod)="filterEvents($event)" field="name" [dropdown]="true">
                         </p-autoComplete>
@@ -113,7 +116,7 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
     selectEvent:string;
     eventsFiltereds:any[] = [];
 
-    constructor(public app: PagesComponent, public router: Router, private cd: ChangeDetectorRef, private menuService: MenuService) {
+    constructor(private _eventsService: CommercialSectionService,public app: PagesComponent, public router: Router, private cd: ChangeDetectorRef, private menuService: MenuService) {
         this.menuSourceSubscription = this.menuService.menuSource$.subscribe(key => {
             // deactivate current active menu
             if (this.active && this.key !== key && key.indexOf(this.key) !== 0) {
@@ -140,6 +143,7 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        this.loadEvents();
         if (!(this.app.isHorizontal() || this.app.isSlim()) && this.item.routerLink) {
             this.updateActiveStateFromRoute();
         }
@@ -150,7 +154,14 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
     updateActiveStateFromRoute() {
         this.active = this.router.isActive(this.item.routerLink[0], this.item.items ? false : true);
     }
-
+    loadEvents(){
+        let param = new HttpParams;
+        param = param.append('state', String(1));  
+        
+        this._eventsService.seach(param).subscribe(data => { 
+         this.events = data.content;                      
+        });  
+    }
     isEventSelected(){
         this.eventSelected.emit(true);
     }

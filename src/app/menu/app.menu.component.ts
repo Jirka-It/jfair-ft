@@ -82,47 +82,42 @@ export class AppMenuComponent implements OnInit {
                             
                         ]
                     },
-                    //{
-                    //    label: 'Eventos', 
-                    //    icon: 'pi pi-fw pi-money-bill',                        
-                    //    badgeClass: 'p-badge-success',
-                    //    items: [
-                    //        {
-                    //            label: 'Sala de Eventos',
-                    //            icon: 'pi pi-fw pi-plus',
-                    //            routerLink: ['eventos/rooms'],                         
-                    //        },
-                    //    ]
-                    //},
-                    //{
-                    //    label: 'Comercial', 
-                    //    icon: 'pi pi-fw pi-calendar',                                                                        
-                    //    badgeClass: 'p-badge-success',
-                    //    items: [
-                    //        {
-                    //            label: 'Expo',
-                    //            icon: 'pi pi-fw pi-plus',
-                    //            routerLink: ['comercial/expo'],                         
-                    //        },
-                    //    ]
-                    //},
                     {
-                        label: 'Configuración', 
-                        icon: 'pi pi-fw pi-cog',                                                
+                        label: 'Eventos', 
+                        icon: 'pi pi-fw pi-money-bill',                        
                         badgeClass: 'p-badge-success',
                         items: [
                             {
-                                label: 'Sona de Stands',
+                                label: 'Sala de Eventos',
                                 icon: 'pi pi-fw pi-plus',
-                                routerLink: ['configuracion/stands'],                         
-                            },
-                            {
-                                label: 'Servicios',
-                                icon: 'pi pi-fw pi-plus',
-                                routerLink: ['configuracion/servicios'],                         
+                                routerLink: ['eventos/rooms'],                         
                             },
                         ]
                     },
+                    {
+                        label: 'Comercial', 
+                        icon: 'pi pi-fw pi-calendar',                                                                        
+                        badgeClass: 'p-badge-success',
+                        items: [
+                            {
+                                label: 'Expo',
+                                icon: 'pi pi-fw pi-plus',
+                                routerLink: ['comercial/expo'],                         
+                            },
+                        ]
+                    },
+                    {label: 'Configuración', icon: 'pi pi-fw pi-cog',},
+                    {
+                        label: 'Zonas',
+                        icon: 'pi pi-fw pi-plus',
+                        routerLink: ['configuracion/stands'],                         
+                    },
+                    {
+                        label: 'Servicios',
+                        icon: 'pi pi-fw pi-plus',
+                        routerLink: ['configuracion/servicios'],                         
+                    },
+                   
 
                 ]
             },            
