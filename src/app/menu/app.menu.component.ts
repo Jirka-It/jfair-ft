@@ -89,11 +89,7 @@ export class AppMenuComponent implements OnInit {
                         badgeClass: 'p-badge-success',
                         items: [
                             {
-<<<<<<< HEAD
-                                label: 'Sala de Eventos',
-=======
                                 label: 'Zonas',
->>>>>>> a919cdcbe94bd5afb8e2341138b5f75c3d8a982f
                                 icon: 'pi pi-fw pi-plus',
                                 routerLink: ['eventos/rooms'],                         
                             },
