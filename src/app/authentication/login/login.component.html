@@ -1,12 +1,11 @@
 <div  class="pages-body login-page flex flex-column layout-topbar-pink">
     
-    <div class="topbar layout-topbar-pink p-3 flex justify-content-between flex-row align-items-center layout-menu-ligth layout-topbar-pink">
+    <div class="topbar  p-3 flex justify-content-between flex-row align-items-center layout-menu-ligth layout-topbar-pink">
         <div class="topbar-left ml-3 flex layout-menu-ligth layout-topbar-pink" routerLink="/">
             <div class="logo">
-                <img src="assets/layout/images/SVG/leon_white.png" alt=""/>
+                <!--img src="assets/layout/images/SVG/leon_white.png" alt=""/-->
             </div>
-        </div>
-        
+        </div>        
     </div>
 
     <form autocomplete="off" [formGroup]="formGroup" class="login align-self-center mt-auto mb-auto">
@@ -77,12 +76,7 @@
     </form>    
     <app-footer></app-footer>
 </div>
-<!--app-modal 
-    [header]="modalError.header" 
-    [message]="modalError.message" 
-    [buttonMessage]="'Aceptar'"
-    [display]="modalDisplay"
-    ></app-modal-->
+
     <ngx-loading
     [show]="loading"
     [config]="{ backdropBorderRadius: '3px' }"    

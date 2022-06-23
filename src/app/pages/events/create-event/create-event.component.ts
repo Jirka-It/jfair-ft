@@ -41,7 +41,7 @@ export class CreateEventComponent implements OnInit {
       plan:        [null, [Validators.required]],
       info:        [null, [Validators.required]],
       color:       [null, [Validators.required]],
-      state:       [null, [Validators.required]],
+      state:       ['activo', [Validators.required]],
       eventId:     [null, [Validators.required]]
     });
   }

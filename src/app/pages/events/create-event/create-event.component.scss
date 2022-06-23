@@ -7,9 +7,16 @@
     .form-text{
         order: 1;
         flex-grow: 1;
-        flex-basis: 50;               
+        flex-basis: 50;  
+        width: 80%;             
     }
     .form-img{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        text-align: center;
+        width: 40%;
         order: 2;
         flex-grow: 4;
     }
@@ -33,6 +40,8 @@ p-editor{
     justify-content: center;  
     flex-direction: column;
     max-width: 25rem;
+    text-align: center;
+    background-color: blue;
     &.first-content{
         margin-top: 10px;
 
@@ -42,6 +51,11 @@ p-editor{
         justify-content: center;
         text-align: center;
         flex-direction: row;
+        img{
+            width: 80%;
+            height: auto;
+            max-width: 20rem;
+        }
     }
 }
 .form-row{               
@@ -65,7 +79,7 @@ p-editor{
         margin-right: 20px;  
     }    
 }
-.p-colorpicker-preview{
+p-colorpicker{
     width: 10rem!important;
 }
 @media (max-width: 768px) {
@@ -73,9 +87,12 @@ p-editor{
         flex-direction: column;                
         .form-text{            
             flex-grow: auto;
+            width: 100%;
         }
         .form-img{            
             flex-grow: auto;
+            width: 100%;
+            background-color: green;
         }
     }
 }
