@@ -4,6 +4,9 @@ import { EventsComponent } from './events.component';
 import { EventsRoomsComponent } from './events-rooms/events-rooms.component';
 import { EventsRoutingModule } from './events.routing';
 import { CreateEventComponent } from './create-event/create-event.component';
+import { InputTextModule } from 'primeng/inputtext';
+import { CalendarModule } from 'primeng/calendar';
+import { EditorModule } from 'primeng/editor';
 
 @NgModule({
     declarations: [
@@ -11,7 +14,13 @@ import { CreateEventComponent } from './create-event/create-event.component';
     CreateEventComponent,
     EventsRoomsComponent
   ],
-    imports: [ CommonModule,EventsRoutingModule ],
+    imports: [ 
+      CommonModule,
+      EventsRoutingModule,
+      CalendarModule,
+      InputTextModule,
+      EditorModule ],
+
     exports: [],
     providers: [],
 })

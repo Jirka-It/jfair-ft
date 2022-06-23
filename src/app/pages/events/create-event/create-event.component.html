@@ -1,8 +1,115 @@
 <div class="form-container">
   <div class="card form-text">
-      <h1>formulario</h1>
+      <form action="">
+
+        <div class="form-row">
+          <span class="p-float-label">
+            <input type="text" class="w-full" pInputText>
+            <label>Nombre</label>
+          </span>
+          <span class="p-float-label">
+            <input type="text" class="w-full" pInputText>
+            <label>Slug</label>
+          </span>
+        </div>
+      
+        <div class="form-row">
+          <span class="p-float-label">
+            <p-calendar [showIcon]="true" inputId="icon" formControlName="openDate" styleClass="w-full"></p-calendar>
+            <label>Apertura</label>
+          </span>
+      
+          <span class="p-float-label">
+            <p-calendar [showIcon]="true" inputId="icon" formControlName="closeDate" styleClass="w-full"></p-calendar>
+            <label>Cierre</label>
+          </span>
+        </div>
+
+        
+        <div class="form-row">
+          <span class="p-float-label">
+            <span class="label-title" for="contacto">Contacto</span>
+            <p-editor id="contacto" formControlName="info">        
+            </p-editor>
+          </span>            
+      
+          <span class="p-float-label">
+            <span class="label-title" for="Plan">Plan</span>
+            <p-editor id="Plan" formControlName="plan">        
+            </p-editor>
+          </span>
+
+        </div>
+
+        <div class="form-row">
+          <span class="p-float-label">
+            <span class="label-title" for="Descripcion">Descripcion</span>
+            <p-editor id="Descripcion" formControlName="description">        
+            </p-editor>
+          </span>
+      
+          <span class="p-float-label">
+            <span class="label-title" for="Terminos">Términos</span>
+            <p-editor id="Terminos" formControlName="terms" >        
+            </p-editor>
+          </span>
+        </div>
+
+        <div class="form-row">
+          <span  class="p-float-label">
+            <span class="label-title" for="Resume">Resumen</span>
+            <p-editor id="Resume" formControlName="summary">        
+            </p-editor>
+          </span>
+        </div>
+        
+        
+
+      </form>
   </div>
   <div class="card form-img">
-    <h1>imagenes</h1>
+
+    <div class="image-content first-content">
+
+      <div class="form-row">        
+        <span class="label-title">Poster</span>
+      </div>
+      <div class="form-row">
+        <img width="150px" heigth="150px"src="assets/layout/images/no-images/no-image.png" alt="">
+      </div>
+
+      <div class="form-row action">
+        <button pButton pRipple type="button" label="Cargar" class="p-button-help w-100 btn-single"></button>
+      </div>
+
+    </div>
+    <div class="image-content">
+
+      <div class="form-row">        
+        <span class="label-title">Mapa</span>
+      </div>
+      <div class="form-row">
+        <img width="150px" heigth="150px"src="assets/layout/images/no-images/no-image.png" alt="">
+      </div>
+
+      <div class="form-row action">
+        <button pButton pRipple type="button" label="Cargar" class="p-button-help w-100 btn-single"></button>
+      </div>
+
+    </div>
+    <div class="image-content">
+      <div class="form-row">        
+        <span class="label-title">Imagen</span>
+      </div>
+      <div class="form-row">
+        <img width="150px" heigth="150px"src="assets/layout/images/no-images/no-image.png" alt="">
+      </div>
+
+      <div class="form-row action">
+        <button pButton pRipple type="button" label="Cargar" class="p-button-help w-100 btn-single"></button>
+      </div>
+
+    </div>
+
   </div>
 </div>
