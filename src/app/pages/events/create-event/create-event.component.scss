@@ -5,12 +5,13 @@
     gap: 25px;
     
     .form-text{
-        order: 2;
-        flex-grow: 4;                
+        order: 1;
+        flex-grow: 1;
+        flex-basis: 30;                
     }
     .form-img{
         order: 2;
-        flex-grow: 2;
+        flex-grow: 4;
     }
 }
 
