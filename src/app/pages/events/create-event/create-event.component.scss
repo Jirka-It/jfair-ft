@@ -1,4 +1,4 @@
-.form-container{
+.form-container{    
     display: flex;    
     flex-direction: row;
     flex-basis: 50;
@@ -7,7 +7,7 @@
     .form-text{
         order: 1;
         flex-grow: 1;
-        flex-basis: 30;                
+        flex-basis: 50;               
     }
     .form-img{
         order: 2;
@@ -32,9 +32,10 @@ p-editor{
     display: flex;
     justify-content: center;  
     flex-direction: column;
-    
+    max-width: 25rem;
     &.first-content{
         margin-top: 10px;
+
     }
     .form-row{
         display: flex;
@@ -46,15 +47,14 @@ p-editor{
 .form-row{               
     display: flex;
     flex-direction: row;
-    width: 100%;
-    margin: 10px;
+    width: 100%;    
     &.action{
         justify-content: center;
         justify-items: center;
         text-align: center;
         margin-top: 10px;
         button{
-            min-width: 10rem !important;
+            min-width: 80% !important;
         }
     }
     span{
@@ -64,6 +64,9 @@ p-editor{
         margin-left: 20px;  
         margin-right: 20px;  
     }    
+}
+.p-colorpicker-preview{
+    width: 10rem!important;
 }
 @media (max-width: 768px) {
     .form-container{           

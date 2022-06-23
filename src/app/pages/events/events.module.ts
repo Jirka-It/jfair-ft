@@ -7,6 +7,9 @@ import { CreateEventComponent } from './create-event/create-event.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { CalendarModule } from 'primeng/calendar';
 import { EditorModule } from 'primeng/editor';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { ColorPickerModule } from 'primeng/colorpicker';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -19,9 +22,14 @@ import { EditorModule } from 'primeng/editor';
       EventsRoutingModule,
       CalendarModule,
       InputTextModule,
-      EditorModule ],
+      EditorModule,
+      ColorPickerModule,           
+      AutoCompleteModule,
+      ReactiveFormsModule,  
+      FormsModule
+     ],
 
     exports: [],
     providers: [],
 })
-export class EventsModule {}
+export class EventsModule {} 

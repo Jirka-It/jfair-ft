@@ -1,18 +1,22 @@
 <div class="form-container">
   <div class="card form-text">
-      <form action="">
+      <form [formGroup]="formEvent">
+
+        <!--div class="form-row">
+          <p-colorPicker></p-colorPicker>
+        </div-->
 
         <div class="form-row">
           <span class="p-float-label">
             <input type="text" class="w-full" pInputText>
-            <label>Nombre</label>
+            <label>Slug</label>
           </span>
           <span class="p-float-label">
             <input type="text" class="w-full" pInputText>
-            <label>Slug</label>
+            <label>Nombre</label>
           </span>
         </div>
-      
+
         <div class="form-row">
           <span class="p-float-label">
             <p-calendar [showIcon]="true" inputId="icon" formControlName="openDate" styleClass="w-full"></p-calendar>
@@ -25,21 +29,14 @@
           </span>
         </div>
 
-        
         <div class="form-row">
-          <span class="p-float-label">
-            <span class="label-title" for="contacto">Contacto</span>
-            <p-editor id="contacto" formControlName="info">        
-            </p-editor>
-          </span>            
-      
           <span  class="p-float-label">
             <span class="label-title" for="Resume">Resumen</span>
             <p-editor id="Resume" formControlName="summary">        
             </p-editor>
-          </span>          
+          </span>  
         </div>
-
+        
         <div class="form-row">
           <span class="p-float-label">
             <span class="label-title" for="Descripcion">Descripcion</span>
@@ -47,7 +44,15 @@
             </p-editor>
           </span>
         </div>
-
+        
+        <div class="form-row">
+          <span class="p-float-label">
+            <span class="label-title" for="Plan">Plan</span>
+            <p-editor id="Plan" formControlName="plan">        
+            </p-editor>
+          </span>
+        </div>
+        
         <div class="form-row">
           <span class="p-float-label">
             <span class="label-title" for="Terminos">Términos</span>
@@ -58,25 +63,46 @@
 
         <div class="form-row">
           <span class="p-float-label">
-            <span class="label-title" for="Plan">Plan</span>
-            <p-editor id="Plan" formControlName="plan">        
+            <span class="label-title" for="contacto">Contacto</span>
+            <p-editor id="contacto" formControlName="info">        
             </p-editor>
+          </span>            
+                 
+        </div>
+
+        <div class="form-row">
+          <span class="p-float-label">
+            <p-autoComplete 
+            id="State"
+            [(ngModel)]="state" 
+            [suggestions]="filtrateStates" 
+            (completeMethod)="filterState($event)"
+            field="name"
+            [dropdown]="true">
+            <ng-template let-states pTemplate="name">
+              <div class="state-name">
+                <div>{{states.name}}</div>
+              </div>
+            </ng-template>
+          </p-autoComplete>
+          <label>Estado</label>
+          </span>
+
+          <span class="col-1  p-float-label">      
+            <p-colorPicker formControlName="color"></p-colorPicker>
           </span>
         </div>
-        
-        
 
       </form>
   </div>
-  <div class="card form-img">
-
-    <div class="image-content first-content">
+  <div class="form-img">
+    <div class="card image-content first-content">
 
       <div class="form-row">        
         <span class="label-title">Poster</span>
       </div>
       <div class="form-row">
-        <img width="150px" heigth="150px"src="assets/layout/images/no-images/no-image.png" alt="">
+        <img width="150px" heigth="150px"src="assets/layout/images/no-images/no-image_1.png" alt="">
       </div>
 
       <div class="form-row action">
@@ -84,13 +110,27 @@
       </div>
 
     </div>
-    <div class="image-content">
+    <div class="card image-content first-content">
+
+      <div class="form-row">        
+        <span class="label-title">Imagen</span>
+      </div>
+      <div class="form-row">
+        <img width="150px" heigth="150px"src="assets/layout/images/no-images/no-image_1.png" alt="">
+      </div>
+
+      <div class="form-row action">
+        <button pButton pRipple type="button" label="Cargar" class="p-button-help w-100 btn-single"></button>
+      </div>
+
+    </div>
+    <div class="card image-content first-content">
 
       <div class="form-row">        
         <span class="label-title">Mapa</span>
       </div>
       <div class="form-row">
-        <img width="150px" heigth="150px"src="assets/layout/images/no-images/no-image.png" alt="">
+        <img width="150px" heigth="150px"src="assets/layout/images/no-images/no-image_1.png" alt="">
       </div>
 
       <div class="form-row action">
@@ -98,19 +138,6 @@
       </div>
 
     </div>
-    <div class="image-content">
-      <div class="form-row">        
-        <span class="label-title">Imagen</span>
-      </div>
-      <div class="form-row">
-        <img width="150px" heigth="150px"src="assets/layout/images/no-images/no-image.png" alt="">
-      </div>
-
-      <div class="form-row action">
-        <button pButton pRipple type="button" label="Cargar" class="p-button-help w-100 btn-single"></button>
-      </div>
-
-    </div>
-
   </div>
+
 </div>
