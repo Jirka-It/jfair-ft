@@ -36,40 +36,11 @@ form{
 p-editor{
     height: 120px;
 }
-.image-content{
-    display: flex;
-    justify-content: center;  
-    flex-direction: column;
-    max-width: 100%;
-    text-align: center;    
-    &.first-content{
-        margin-top: 10px;
-    }
-    .form-row{
-        display: flex;
-        justify-content: center;
-        text-align: center;
-        flex-direction: row;
-        img{
-            width: 80%;
-            height: auto;
-            max-width: 20rem;
-        }
-    }
-}
+
 .form-row{               
     display: flex;
     flex-direction: row;
-    width: 100%;    
-    &.action{
-        justify-content: center;
-        justify-items: center;
-        text-align: center;
-        margin-top: 10px;
-        button{
-            min-width: 80% !important;
-        }
-    }
+    width: 100%;      
     span{
         padding: 5px;
         order: 2;
@@ -78,22 +49,6 @@ p-editor{
         margin-right: 20px;  
     }    
 }
-/*Input*/
-.input-file{
-    display:none;  
-  }
-  .input-btn{
-    background-color:#8c8c8c;
-    color:#fff;
-    border:1px solid #8c8c8c;
-    padding:5px;
-    border-radius:6px;
-    box-shadow:1px 1px 3px #000;
-    margin:10px;
-  }
-  .input-btn:hover{
-    background-color:#c9cccb;
-  }
 
 @media (max-width: 768px) {
     .form-container{           
@@ -108,8 +63,8 @@ p-editor{
             align-items: center;            
             flex-grow: auto;
             width: 100%;
-            .image-content{
-                width: 100%;                
+            app-image-manager{
+                width: inherit;
             }
         }
     }

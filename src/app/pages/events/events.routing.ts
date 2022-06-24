@@ -8,7 +8,7 @@ const routes: Routes = [
     { 
         path: '', component: EventsComponent, 
         children:[
-            { path: 'new', component: CreateEventComponent }
+            { path: 'nuevo', component: CreateEventComponent }
         ]
     }
 ];

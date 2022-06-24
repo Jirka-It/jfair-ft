@@ -7,7 +7,7 @@ import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { FormsModule } from '@angular/forms';
-import {TooltipModule} from 'primeng/tooltip';
+import { TooltipModule} from 'primeng/tooltip';
 
 import { MenuBarComponent } from './menu-bar/menu-bar.component';
 import { CardChartComponent } from './charts/card-chart/card-chart.component';
@@ -17,30 +17,42 @@ import {TabViewModule} from 'primeng/tabview';
 import { CardChartPieComponent } from './charts/card-chart-pie/card-chart-pie';
 import { CardChartTimeLineComponent } from './charts/card-chart-timeline/card-chart-timeline.component';
 import { AutoCompleteModule } from 'primeng/autocomplete';
+import { ImageManagerComponent } from './image-manager/image-manager.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
+import { FileUploadModule } from 'primeng/fileupload';
+import { DialogModule } from 'primeng/dialog';
+
 @NgModule({
   declarations: [
     MenuBarComponent,
     CardChartComponent,
     CardChartPieComponent,
     CardChartBarsComponent,
-    CardChartTimeLineComponent
+    ImageManagerComponent,
+    CardChartTimeLineComponent,
     ],
 
-  imports: [ CommonModule,
-    ChartModule,
+  imports: [ 
     MenuModule,
-    FormsModule,
-    MenubarModule,
+    ChartModule,
     TableModule,
+    FormsModule,
+    DialogModule,
+    ButtonModule,
+    CommonModule,
+    MenubarModule,
     TabViewModule,
-    AutoCompleteModule,
-    MultiSelectModule,
     TooltipModule,
-    ButtonModule],
+    FileUploadModule,
+    MultiSelectModule,
+    AutoCompleteModule,
+    ImageCropperModule,
+  ],
 
   exports: [CardChartComponent,
     MenuBarComponent,    
     CardChartPieComponent,
+    ImageManagerComponent,
     CardChartBarsComponent,
     CardChartTimeLineComponent]  
 })

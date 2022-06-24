@@ -127,99 +127,12 @@
   </div>
 
   <div class="form-img">
-
-    <div class="card image-content first-content">
-      <div class="form-row">        
-        <span class="label-title">Poster</span>
-      </div>
-      <div class="form-row">        
-        <img [src]="images['poster']?images['poster']:'assets/layout/images/no-images/no-image_1.png'" />        
-      </div>
-      <div class="form-row action">
-        <button 
-        (click)="uploadImage('input_file_poster')"
-        pButton pRipple type="button" label="Cargar" class="p-button-help w-100 btn-single">
-        </button>
-        <input 
-        class='input-file'
-        id="input_file_poster" 
-        type="file" 
-        (change)="fileChangeEvent($event,'poster')"/>                               
-      </div>
-    </div>
     
-    <div class="card image-content first-content">
+    <app-image-manager [keyImage]="'poster'" ></app-image-manager>
+    <app-image-manager [keyImage]="'mapa'" ></app-image-manager>
+    <app-image-manager [keyImage]="'imagen'" ></app-image-manager>
 
-      <div class="form-row">        
-        <span class="label-title">Imagen</span>
-      </div>
-      <div class="form-row">
-        <img [src]=" images['image'] ? images['image'] : 'assets/layout/images/no-images/no-image_1.png'" >
-      </div>
 
-      <div class="form-row action">
-        <button 
-        (click)="uploadImage('input_file_imagen')"
-        pButton pRipple type="button" label="Cargar" class="p-button-help w-100 btn-single">
-        </button>
-        <input 
-        class='input-file'
-        id="input_file_imagen" 
-        type="file" 
-        (change)="fileChangeEvent($event,'imagen')"/>                                     
-      </div>
-
-    </div>
-    <div class="card image-content first-content">
-
-      <div class="form-row">        
-        <span class="label-title">Mapa</span>
-      </div>
-      <div class="form-row">        
-        <img [src]=" images['mapa'] ? images['mapa'] : 'assets/layout/images/no-images/no-image_1.png'" alt="">
-      </div>
-
-      <input 
-        class='input-file'
-        id="input_file_mapa" 
-        type="file" 
-        (change)="fileChangeEvent($event,'mapa')"/>
-
-      <div class="form-row action">
-        <button
-        (click)="uploadImage('input_file_mapa')"
-         pButton pRipple type="button" label="Cargar" class="p-button-help w-100 btn-single"></button>
-      </div>
-
-    </div>
   </div>
 
 </div>
-
-
-<p-dialog 
-  position="bottom" 
-  [draggable]="false" 
-  dismissableMask="false"
-  modal="true"
-  (onHide)="disableCropByPreview()"
-  [(visible)]="crop_post_displ || crop_map_displ || crop_img_displ">
-    
-
-  <image-cropper
-  [imageChangedEvent]="imageChangedEvent"
-  [maintainAspectRatio]="true"
-  [aspectRatio]="4 / 4"
-  format="png"
-  (imageCropped)="imageCropped($event)"
-  (imageLoaded)="imageLoaded($event)"
-  (cropperReady)="cropperReady()"
-  (loadImageFailed)="loadImageFailed()"
-  ></image-cropper>
-
-  <div>
-    <button
-    (click)="disableCropByPreview()"
-     pButton pRipple type="button" label="Finalizar" class="p-button-help w-100 btn-single"></button>
-  </div>
-  </p-dialog>

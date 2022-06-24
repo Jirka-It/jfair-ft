@@ -31,12 +31,12 @@ export class AppMenuComponent implements OnInit {
                     {
                         label: 'Nuevo evento', 
                         icon: 'pi pi-fw pi-plus',
-                        routerLink: ['eventos/new'],
+                        routerLink: ['eventos/nuevo'],
                     },
                     {
                         label: 'Eventos', 
                         icon: 'pi pi-fw pi-plus',
-                        routerLink: ['eventos/new'],
+                        routerLink: ['eventos'],
                                                                          
                     },
                     {
@@ -83,30 +83,7 @@ export class AppMenuComponent implements OnInit {
                             
                         ]
                     },
-                    {
-                        label: 'Eventos', 
-                        icon: 'pi pi-fw pi-money-bill',                        
-                        badgeClass: 'p-badge-success',
-                        items: [
-                            {
-                                label: 'Zonas',
-                                icon: 'pi pi-fw pi-plus',
-                                routerLink: ['eventos/rooms'],                         
-                            },
-                        ]
-                    },
-                    {
-                        label: 'Comercial', 
-                        icon: 'pi pi-fw pi-calendar',                                                                        
-                        badgeClass: 'p-badge-success',
-                        items: [
-                            {
-                                label: 'Expo',
-                                icon: 'pi pi-fw pi-plus',
-                                routerLink: ['comercial/expo'],                         
-                            },
-                        ]
-                    },
+                   
                     {label: 'Configuración', icon: 'pi pi-fw pi-cog',},
                     {
                         label: 'Zonas',

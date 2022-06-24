@@ -1,0 +1,54 @@
+.card{
+  width: 100%;
+  max-width: 50rem;
+}
+.image-content{
+  display: flex;
+  justify-content: center;  
+  flex-direction: column;
+  max-width: 100%;
+  text-align: center;    
+  &.first-content{
+      margin-top: 10px;
+  }
+  .form-row{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: row;
+    img{
+      width: 80%;
+      height: auto;
+      max-width: 20rem;
+    }
+    &.action{
+      justify-content: center;
+      justify-items: center;
+      text-align: center;
+      margin-top: 10px;
+      button{
+        min-width: 80% !important;
+        &.editable{
+          max-width: 30% !important;
+          min-width: 30% !important;
+        }
+      }
+    }
+    span{
+      padding: 5px;
+      order: 2;
+      flex-grow: 2;  
+      margin-left: 20px;  
+      margin-right: 20px;  
+    }
+  }
+}
+.input-file{
+  display:none;  
+}
+
+@media (max-width: 768px) {         
+  .image-content{
+    width: 100%;    
+  }
+}
