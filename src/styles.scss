@@ -9,3 +9,53 @@
 .spacer{
   flex: 1 1 1 auto;
 }
+
+/*Validator styles inputs*/
+.p-dialog-heade{
+  background-color: white!important;
+}
+.p-calendar-w-btn{
+  border: 1px solid #e0e0e07c;
+}
+.invalid{
+  span.p-calendar-w-btn{
+    border: 1px solid #C62828;
+  }
+}
+.p-inputtext{
+  border: 1px solid #e0e0e07c;
+  &.invalid{
+    border: 1px solid #C62828;
+  }
+}
+.label-title.invalid{
+  color: #C62828;
+}
+
+.menu-wrapper {
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 10px;
+  }
+}
+/* Scroll bar stylings */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--lightestgrey); 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #C51162; 
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}

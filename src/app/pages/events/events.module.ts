@@ -9,24 +9,33 @@ import { CalendarModule } from 'primeng/calendar';
 import { EditorModule } from 'primeng/editor';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { ColorPickerModule } from 'primeng/colorpicker';
+import {ToolbarModule} from 'primeng/toolbar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { ImageCropperModule } from 'ngx-image-cropper';
+import {DialogModule} from 'primeng/dialog';
+import { ImageUploadModalComponent } from './create-event/image-upload-modal/image-upload-modal.component';
+import { FileUploadModule } from 'primeng/fileupload';
 @NgModule({
     declarations: [
     EventsComponent,
     CreateEventComponent,
-    EventsRoomsComponent
+    EventsRoomsComponent,
+    ImageUploadModalComponent
   ],
-    imports: [ 
+    imports: [       
+      FormsModule,
       CommonModule,
-      EventsRoutingModule,
+      DialogModule,
+      EditorModule,
+      ToolbarModule,
       CalendarModule,
       InputTextModule,
-      EditorModule,
+      FileUploadModule,
       ColorPickerModule,           
+      ImageCropperModule,
       AutoCompleteModule,
+      EventsRoutingModule,
       ReactiveFormsModule,  
-      FormsModule
      ],
 
     exports: [],

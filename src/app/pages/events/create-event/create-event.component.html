@@ -1,4 +1,18 @@
-<div class="form-container">
+<p-toolbar>
+  <div class="p-toolbar-group-left">
+      <h1>{{title}}</h1>                   
+  </div>
+  
+  <div class="p-toolbar-group-right">
+      <p-button class="mr-1" label="Guardar" (click)="saveform()"></p-button>
+      <p-button class="mr-1" label="Regresar" styleClass="p-button-info"></p-button>
+  </div>
+</p-toolbar>
+
+
+<div class="form-container mt-2">
+  
+  
   <div class="card form-text">
       <form [formGroup]="formEvent">
 
@@ -8,30 +22,32 @@
 
         <div class="form-row">
           <span class="p-float-label">
-            <input type="text" class="w-full" pInputText>
+            <input type="text" [class.invalid]="isValid('sigla')" class="w-full" formControlName="sigla" pInputText>
             <label>Slug</label>
           </span>
           <span class="p-float-label">
-            <input type="text" class="w-full" pInputText>
+            <input type="text" [class.invalid]="isValid('name')" class="w-full" formControlName="name" pInputText>
             <label>Nombre</label>
           </span>
         </div>
 
         <div class="form-row">
           <span class="p-float-label">
-            <p-calendar [showIcon]="true" inputId="icon" formControlName="openDate" styleClass="w-full"></p-calendar>
+            <p-calendar [showIcon]="true" [class.invalid]="isValid('openDate')" inputId="icon" formControlName="openDate" styleClass="w-full"></p-calendar>
             <label>Apertura</label>
           </span>
       
           <span class="p-float-label">
-            <p-calendar [showIcon]="true" inputId="icon" formControlName="closeDate" styleClass="w-full"></p-calendar>
+            <p-calendar [showIcon]="true" [class.invalid]="isValid('closeDate')" inputId="icon" formControlName="closeDate" styleClass="w-full"></p-calendar>
             <label>Cierre</label>
           </span>
         </div>
 
         <div class="form-row">
           <span  class="p-float-label">
-            <span class="label-title" for="Resume">Resumen</span>
+            <span [class.invalid]="isValid('summary')" class="label-title" for="Resume">
+              Resumen {{isValid('summary')?'*':''}}
+            </span>
             <p-editor id="Resume" formControlName="summary">        
             </p-editor>
           </span>  
@@ -39,7 +55,9 @@
         
         <div class="form-row">
           <span class="p-float-label">
-            <span class="label-title" for="Descripcion">Descripcion</span>
+            <span [class.invalid]="isValid('description')" class="label-title" for="Descripcion">
+              Descripcion {{isValid('description')?'*':''}}
+            </span>
             <p-editor id="Descripcion" formControlName="description">        
             </p-editor>
           </span>
@@ -47,7 +65,9 @@
         
         <div class="form-row">
           <span class="p-float-label">
-            <span class="label-title" for="Plan">Plan</span>
+            <span [class.invalid]="isValid('plan')" class="label-title" for="Plan">
+              Plan {{isValid('plan')?'*':''}}
+            </span>
             <p-editor id="Plan" formControlName="plan">        
             </p-editor>
           </span>
@@ -55,7 +75,10 @@
         
         <div class="form-row">
           <span class="p-float-label">
-            <span class="label-title" for="Terminos">Términos</span>
+            <span [class.invalid]="isValid('terms')" class="label-title" for="Terminos">
+              Términos {{isValid('terms')?'*':''}}
+            </span>
+            
             <p-editor id="Terminos" formControlName="terms" >        
             </p-editor>
           </span>
@@ -63,7 +86,9 @@
 
         <div class="form-row">
           <span class="p-float-label">
-            <span class="label-title" for="contacto">Contacto</span>
+            <span [class.invalid]="isValid('info')" class="label-title" for="contacto">
+              Contacto {{isValid('info')?'*':''}}
+            </span>
             <p-editor id="contacto" formControlName="info">        
             </p-editor>
           </span>            
@@ -74,10 +99,12 @@
           <span class="p-float-label">
             <p-autoComplete 
             id="State"
+            [class.invalid]="isValid('state')"
+            formControlName="state"
             [(ngModel)]="state" 
             [suggestions]="filtrateStates" 
             (completeMethod)="filterState($event)"
-            field="name"
+            field="name"            
             [dropdown]="true">
             <ng-template let-states pTemplate="name">
               <div class="state-name">
@@ -89,26 +116,36 @@
           </span>
 
           <span class="col-1  p-float-label">      
-            <p-colorPicker formControlName="color"></p-colorPicker>
+            <span class="label-title">
+              Color {{isValid('color')?'*':''}}
+            </span>
+            <p-colorPicker formControlName="color" ></p-colorPicker>
           </span>
         </div>
 
       </form>
   </div>
-  <div class="form-img">
-    <div class="card image-content first-content">
 
+  <div class="form-img">
+
+    <div class="card image-content first-content">
       <div class="form-row">        
         <span class="label-title">Poster</span>
       </div>
-      <div class="form-row">
-        <img src="assets/layout/images/no-images/no-image_1.png" alt="">
+      <div class="form-row">        
+        <img [src]="images['poster']?images['poster']:'assets/layout/images/no-images/no-image_1.png'" />        
       </div>
-
       <div class="form-row action">
-        <button pButton pRipple type="button" label="Cargar" class="p-button-help w-100 btn-single"></button>
+        <button 
+        (click)="uploadImage('input_file_poster')"
+        pButton pRipple type="button" label="Cargar" class="p-button-help w-100 btn-single">
+        </button>
+        <input 
+        class='input-file'
+        id="input_file_poster" 
+        type="file" 
+        (change)="fileChangeEvent($event,'poster')"/>                               
       </div>
-
     </div>
     
     <div class="card image-content first-content">
@@ -117,11 +154,19 @@
         <span class="label-title">Imagen</span>
       </div>
       <div class="form-row">
-        <img src="assets/layout/images/no-images/no-image_1.png" alt="">
+        <img [src]=" images['image'] ? images['image'] : 'assets/layout/images/no-images/no-image_1.png'" >
       </div>
 
       <div class="form-row action">
-        <button pButton pRipple type="button" label="Cargar" class="p-button-help w-100 btn-single"></button>
+        <button 
+        (click)="uploadImage('input_file_imagen')"
+        pButton pRipple type="button" label="Cargar" class="p-button-help w-100 btn-single">
+        </button>
+        <input 
+        class='input-file'
+        id="input_file_imagen" 
+        type="file" 
+        (change)="fileChangeEvent($event,'imagen')"/>                                     
       </div>
 
     </div>
@@ -130,15 +175,51 @@
       <div class="form-row">        
         <span class="label-title">Mapa</span>
       </div>
-      <div class="form-row">
-        <img src="assets/layout/images/no-images/no-image_1.png" alt="">
+      <div class="form-row">        
+        <img [src]=" images['mapa'] ? images['mapa'] : 'assets/layout/images/no-images/no-image_1.png'" alt="">
       </div>
 
+      <input 
+        class='input-file'
+        id="input_file_mapa" 
+        type="file" 
+        (change)="fileChangeEvent($event,'mapa')"/>
+
       <div class="form-row action">
-        <button pButton pRipple type="button" label="Cargar" class="p-button-help w-100 btn-single"></button>
+        <button
+        (click)="uploadImage('input_file_mapa')"
+         pButton pRipple type="button" label="Cargar" class="p-button-help w-100 btn-single"></button>
       </div>
 
     </div>
   </div>
 
 </div>
+
+
+<p-dialog 
+  position="bottom" 
+  [draggable]="false" 
+  dismissableMask="false"
+  modal="true"
+  (onHide)="disableCropByPreview()"
+  [(visible)]="crop_post_displ || crop_map_displ || crop_img_displ">
+    
+
+  <image-cropper
+  [imageChangedEvent]="imageChangedEvent"
+  [maintainAspectRatio]="true"
+  [aspectRatio]="4 / 4"
+  format="png"
+  (imageCropped)="imageCropped($event)"
+  (imageLoaded)="imageLoaded($event)"
+  (cropperReady)="cropperReady()"
+  (loadImageFailed)="loadImageFailed()"
+  ></image-cropper>
+
+  <div>
+    <button
+    (click)="disableCropByPreview()"
+     pButton pRipple type="button" label="Finalizar" class="p-button-help w-100 btn-single"></button>
+  </div>
+  </p-dialog>

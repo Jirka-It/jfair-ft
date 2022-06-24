@@ -41,7 +41,7 @@ export class CommercialSectionService {
 
   public seach(params: HttpParams): Observable<any>
   {
-    console.log(params)
+    //console.log(params)
     return this._http.get(this.services.commercials + '?' + params.toString(), this.httpOpts);
   }
   public store(data)

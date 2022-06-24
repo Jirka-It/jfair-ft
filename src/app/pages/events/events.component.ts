@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./events.component.scss']
 })
 export class EventsComponent implements OnInit {
-
+  title:string = 'Eventos';
   constructor() { }
 
   ngOnInit(): void {
+  }
+  setTitle(title:string){
+    this.title = title;
   }
 
 }
