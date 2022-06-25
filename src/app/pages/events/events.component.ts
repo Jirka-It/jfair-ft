@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-events',
@@ -9,9 +10,10 @@ export class EventsComponent implements OnInit {
   title:string = 'Eventos';
   isEdit:boolean = false;
   idEvent:number = -1;
-  constructor() { }
+  constructor(private location:Router) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {  
+    this.closeEdit(false);  
   }
   setTitle(title:string){
     this.title = title;
@@ -23,6 +25,12 @@ export class EventsComponent implements OnInit {
       default:
         break;
     }    
+  }
+  closeEdit(value:boolean){
+    this.isEdit = value;
+  }
+  isEventRoute():boolean{
+    return (this.location.url == ('/eventos'));
   }
 
 }

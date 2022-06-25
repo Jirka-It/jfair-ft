@@ -2,19 +2,20 @@ import { HttpParams } from '@angular/common/http';
 import { Component, OnInit, Output,EventEmitter } from '@angular/core';
 import { IComercial } from './commercial.metadata';
 import { CustomerService } from 'src/app/demo/service/customerservice';
-import { CommercialSectionService } from 'src/app/pages/comercial/services/commercial-section.service';
+import { EventService } from '../../services/events.service';
 
 enum TYPE_REGISTER {HISTORIAL=0,VIGENTE=1};
 
 @Component({
   selector: 'app-table-event',
-  templateUrl: './table-commercial.component.html', 
+  templateUrl: './table-event.component.html', 
   
 })
 export class TableEventComponent implements OnInit {
   @Output('options') optionSelected:EventEmitter<any> = new EventEmitter();
+  loading:boolean = true;
   constructor(
-    private commmercialSectionService: CommercialSectionService,
+    private eventService: EventService,
   ) { }
   //TODO cambiar nombres{}
   commercialDataSource:IComercial[] = [];
@@ -42,11 +43,11 @@ export class TableEventComponent implements OnInit {
     let param = new HttpParams;
     param = param.append('state', String(type));  
     
-    this.commmercialSectionService.seach(param).subscribe(data => { 
+    this.eventService.seach(param).subscribe(data => { 
       type == TYPE_REGISTER.VIGENTE ? 
       this.commercialDataSource = data.content :
       this.historicalDataSource = data.content;
-            
+      this.loading = false;            
       this.fixedDates(type);
         
     });  

@@ -7,6 +7,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { TableModule } from 'primeng/table';
 import { TabViewModule } from 'primeng/tabview';
 import { TooltipModule } from 'primeng/tooltip';
+import { NgxLoadingModule } from 'ngx-loading';
 
 @NgModule({
     declarations: [
@@ -19,6 +20,7 @@ import { TooltipModule } from 'primeng/tooltip';
         AutoCompleteModule,
         MultiSelectModule,
         TooltipModule,
+        NgxLoadingModule.forRoot({}),
         ButtonModule
      ],
     exports: [TableEventComponent],

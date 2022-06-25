@@ -3,7 +3,7 @@
     <span class="label-title">{{keyImage}}</span>
   </div>
   <div class="form-row">        
-    <img [src]="imageBase64?imageBase64:'assets/layout/images/no-images/no-image_1.png'" />        
+    <img [src]="urlImg()" />        
 </div>
 
 <div class="form-row action">
@@ -12,8 +12,7 @@
     (click)="uploadImage()"
     pButton pRipple 
     type="button" 
-    [ngClass]="{'editable': isImageLoaded()}"        
-
+    [ngClass]="{'editable': isImageLoaded()}"
     [label]="isImageLoaded()?'Remplazar':'Cargar'" 
     >
     </button>
@@ -44,10 +43,24 @@
     
 
   <image-cropper
+  *ngIf="!image"
+  [imageChangedEvent]="imageChangedEvent"
+  [maintainAspectRatio]="true"
+  [aspectRatio]="4 / 4"
+  format="png"  
+  (imageCropped)="imageCropped($event)"
+  (imageLoaded)="imageLoaded($event)"
+  (cropperReady)="cropperReady()"
+  (loadImageFailed)="loadImageFailed()"
+  ></image-cropper>
+
+  <image-cropper
+  *ngIf="image"
   [imageChangedEvent]="imageChangedEvent"
   [maintainAspectRatio]="true"
   [aspectRatio]="4 / 4"
   format="png"
+  [imageURL]="image"
   (imageCropped)="imageCropped($event)"
   (imageLoaded)="imageLoaded($event)"
   (cropperReady)="cropperReady()"

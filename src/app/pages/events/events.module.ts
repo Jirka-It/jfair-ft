@@ -16,7 +16,7 @@ import { DialogModule} from 'primeng/dialog';
 import { ImageUploadModalComponent } from './create-event/image-upload-modal/image-upload-modal.component';
 import { FileUploadModule } from 'primeng/fileupload';
 import { ComponentsModule } from 'src/app/components/components.module';
-import { TableEventsModule } from './events-list/event-table/table-commercial.module';
+import { TableEventsModule } from './events-list/event-table/table-event.module';
 @NgModule({
     declarations: [
     EventsComponent,

@@ -1,4 +1,4 @@
 <router-outlet></router-outlet>
-<app-table-event  *ngIf="!isEdit" (options)="setOptions($event)"></app-table-event>
 
-<app-create-event *ngIf="isEdit" [title]="'Editar evento'" [idEvent]="idEvent"></app-create-event>
+<app-table-event  *ngIf="!isEdit && isEventRoute()" (options)="setOptions($event)"></app-table-event>
+<app-create-event *ngIf="isEdit && isEventRoute()" (goBack)="closeEdit($event)" [title]="'Editar evento'" [idEvent]="idEvent"></app-create-event>

@@ -5,7 +5,7 @@
   
   <div class="p-toolbar-group-right">
       <p-button class="mr-1" label="Guardar" (click)="saveform()"></p-button>
-      <p-button class="mr-1" label="Regresar" styleClass="p-button-info"></p-button>
+      <p-button class="mr-1" label="Regresar"(click)="hideForm()"styleClass="p-button-info" *ngIf="idEvent >= 0"></p-button>
   </div>
 </p-toolbar>
 
@@ -128,9 +128,9 @@
 
   <div class="form-img">
     
-    <app-image-manager [keyImage]="'poster'" ></app-image-manager>
-    <app-image-manager [keyImage]="'mapa'" ></app-image-manager>
-    <app-image-manager [keyImage]="'imagen'" ></app-image-manager>
+    <app-image-manager [image]="images['poster']" [keyImage]="'poster'" ></app-image-manager>
+    <app-image-manager [image]="images['mapa']" [keyImage]="'mapa'" ></app-image-manager>
+    <app-image-manager [image]="images['image']" [keyImage]="'imagen'" ></app-image-manager>
 
 
   </div>
