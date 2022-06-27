@@ -17,12 +17,14 @@ import { ImageUploadModalComponent } from './create-event/image-upload-modal/ima
 import { FileUploadModule } from 'primeng/fileupload';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { TableEventsModule } from './events-list/event-table/table-event.module';
+import { EventsStandsComponent } from './events-stands/events-stands.component';
 @NgModule({
     declarations: [
     EventsComponent,
     CreateEventComponent,
     EventsRoomsComponent,
     ImageUploadModalComponent,
+    EventsStandsComponent
   ],
   imports: [       
     FormsModule,
@@ -39,7 +41,7 @@ import { TableEventsModule } from './events-list/event-table/table-event.module'
     AutoCompleteModule,
     EventsRoutingModule,
     ReactiveFormsModule,  
-    TableEventsModule
+    TableEventsModule,    
      ],
 
     exports: [],

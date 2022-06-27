@@ -65,6 +65,7 @@ export class TableEventComponent implements OnInit {
    }
 
    openOptions(optionKey:string,idEvent:number){
+    console.log('send')
     this.optionSelected.emit(JSON.stringify({optionKey,idEvent}));
    }
 }

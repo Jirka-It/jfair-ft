@@ -108,7 +108,7 @@
                     <td>
                       <span class="p-column-title">Opciones</span>                        
                       <button pButton pRipple type="button" icon="pi pi-pencil"    (click)="openOptions('EDIT',commercial.id)" tooltipPosition="bottom" class="p-button-warning p-button-text mr-2 mb-2" pTooltip="Editar"></button>
-                      <button pButton pRipple type="button" icon="pi pi-map"       tooltipPosition="bottom" class="p-button-text mr-2 mb-2" pTooltip="Stands"></button>
+                      <button pButton pRipple type="button" icon="pi pi-map"       (click)="openOptions('STAND',commercial.id)" tooltipPosition="bottom" class="p-button-text mr-2 mb-2" pTooltip="Stands"></button>
                       <button pButton pRipple type="button" icon="pi pi-envelope"  tooltipPosition="bottom" class="p-button-text mr-2 mb-2" pTooltip="Solicitudes"></button>
                       <button pButton pRipple type="button" icon="pi pi-desktop"   tooltipPosition="bottom" class=" p-button-text mr-2 mb-2" pTooltip="Portal"></button>
                       <button pButton pRipple type="button" icon="pi pi-sitemap"   tooltipPosition="bottom" class=" p-button-text mr-2 mb-2" pTooltip="Secciones"></button>
@@ -229,9 +229,10 @@
                        {{historial.closeDate | date}}
                     </td>                                 
                     <td>
-                      <span class="p-column-title">Cierre</span>                        
-                      <button pButton pRipple type="button" icon="pi pi-pencil"    (click)="openOptions('EDIT',historial.id)" tooltipPosition="bottom" class="p-button-warning p-button-text mr-2 mb-2" pTooltip="Editar"></button>
-                      <button pButton pRipple type="button" icon="pi pi-map"       tooltipPosition="bottom" class="p-button-text mr-2 mb-2" pTooltip="Stands"></button>
+                      <span class="p-column-title">Cierre</span> 
+                                             
+                      <button pButton pRipple type="button" icon="pi pi-pencil"    (click)="openOptions('EDIT' ,historial.id)"  tooltipPosition="bottom" class="p-button-warning p-button-text mr-2 mb-2" pTooltip="Editar"></button>
+                      <button pButton pRipple type="button" icon="pi pi-map"       (click)="openOptions('STAND',historial.id)" tooltipPosition="bottom" class="p-button-text mr-2 mb-2" pTooltip="Stands"></button>
                       <button pButton pRipple type="button" icon="pi pi-envelope"  tooltipPosition="bottom" class="p-button-text mr-2 mb-2" pTooltip="Solicitudes"></button>
                       <button pButton pRipple type="button" icon="pi pi-desktop"   tooltipPosition="bottom" class=" p-button-text mr-2 mb-2" pTooltip="Portal"></button>
                       <button pButton pRipple type="button" icon="pi pi-sitemap"   tooltipPosition="bottom" class=" p-button-text mr-2 mb-2" pTooltip="Secciones"></button>

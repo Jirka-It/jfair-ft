@@ -21,22 +21,30 @@ import { ImageManagerComponent } from './image-manager/image-manager.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { FileUploadModule } from 'primeng/fileupload';
 import { DialogModule } from 'primeng/dialog';
+import { MapManagerComponent} from './map-manager/map-manager.component';
+import {RippleModule} from 'primeng/ripple';
+import { MarkLabelComponent } from './map-manager/label/mark-label.component';
+import {BadgeModule} from 'primeng/badge';
 
 @NgModule({
   declarations: [
-    MenuBarComponent,
+    MenuBarComponent,    
+    MapManagerComponent,
     CardChartComponent,
     CardChartPieComponent,
     CardChartBarsComponent,
+    MarkLabelComponent,
     ImageManagerComponent,
     CardChartTimeLineComponent,
     ],
 
   imports: [ 
     MenuModule,
+    BadgeModule,
     ChartModule,
     TableModule,
     FormsModule,
+    RippleModule,
     DialogModule,
     ButtonModule,
     CommonModule,
@@ -49,11 +57,14 @@ import { DialogModule } from 'primeng/dialog';
     ImageCropperModule,
   ],
 
-  exports: [CardChartComponent,
-    MenuBarComponent,    
+  exports: [
+    CardChartComponent,
+    MenuBarComponent,   
+    MapManagerComponent, 
     CardChartPieComponent,
     ImageManagerComponent,
-    CardChartBarsComponent,
+    CardChartBarsComponent,    
+    MarkLabelComponent,
     CardChartTimeLineComponent]  
 })
 export class ComponentsModule {}

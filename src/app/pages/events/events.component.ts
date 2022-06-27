@@ -9,7 +9,9 @@ import { Router } from '@angular/router';
 export class EventsComponent implements OnInit {
   title:string = 'Eventos';
   isEdit:boolean = false;
+  isStand:boolean = false;
   idEvent:number = -1;
+
   constructor(private location:Router) { }
 
   ngOnInit(): void {  
@@ -19,9 +21,11 @@ export class EventsComponent implements OnInit {
     this.title = title;
   }
   setOptions(option:any){        
+    console.log(option);
     this.idEvent=JSON.parse(option)['idEvent'];
     switch (JSON.parse(option)['optionKey']) {
-      case "EDIT":{ this.isEdit=true; break;}                    
+      case "EDIT":{   this.isEdit=true; break;}                    
+      case "STAND":{ this.isStand=true; break;}                    
       default:
         break;
     }    
