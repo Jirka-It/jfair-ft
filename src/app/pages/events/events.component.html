@@ -4,3 +4,30 @@
 <app-create-event *ngIf="isEdit && isEventRoute()" (goBack)="closeEdit($event)" [title]="'Editar evento'" [idEvent]="idEvent"></app-create-event>
 
 <app-events-stands *ngIf="isStand"></app-events-stands>
+
+<!--div class="card stands">
+
+  <div class="card-body">
+    <span class="p-float-label">
+      <input id="float-input" type="text" pInputText > 
+      <label for="float-input">Numero</label>
+  </span>
+
+  <span class="p-float-label">
+    <input id="float-input" type="text" pInputText > 
+    <label for="float-input">Ancho</label>
+</span>
+
+<span class="p-float-label">
+  <input id="float-input" type="text" pInputText > 
+  <label for="float-input">Largo</label>
+</span>
+
+<span class="p-float-label">
+  <input id="float-input" type="text" pInputText > 
+  <label for="float-input">Precio</label>
+</span>
+    
+<p-multiSelect [options]="cities"  optionLabel="name" optionValue="code"></p-multiSelect>
+
+</div-->

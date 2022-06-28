@@ -8,6 +8,7 @@ import { TableModule } from 'primeng/table';
 import { TabViewModule } from 'primeng/tabview';
 import { TooltipModule } from 'primeng/tooltip';
 import { NgxLoadingModule } from 'ngx-loading';
+import {InputTextModule} from 'primeng/inputtext';
 
 @NgModule({
     declarations: [
@@ -15,6 +16,7 @@ import { NgxLoadingModule } from 'ngx-loading';
     ],
     imports: [ 
         CommonModule,
+        InputTextModule,
         TableModule,
         TabViewModule,
         AutoCompleteModule,

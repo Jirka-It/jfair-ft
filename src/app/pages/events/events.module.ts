@@ -19,6 +19,7 @@ import { ComponentsModule } from 'src/app/components/components.module';
 import { TableEventsModule } from './events-list/event-table/table-event.module';
 import { EventsStandsComponent } from './events-stands/events-stands.component';
 import {PanelModule} from 'primeng/panel';
+import {MultiSelectModule} from 'primeng/multiselect';
 @NgModule({
     declarations: [
     EventsComponent,
@@ -32,6 +33,7 @@ import {PanelModule} from 'primeng/panel';
     CommonModule,
     PanelModule,
     
+    MultiSelectModule,
     DialogModule,
     EditorModule,
     ToolbarModule,

@@ -12,7 +12,18 @@ export class EventsComponent implements OnInit {
   isStand:boolean = false;
   idEvent:number = -1;
 
-  constructor(private location:Router) { }
+  cities:any = [];
+
+  selectedCities: [];
+  constructor(private location:Router) { 
+    this.cities = [
+      {name: 'New York', code: 'NY'},
+      {name: 'Rome', code: 'RM'},
+      {name: 'London', code: 'LDN'},
+      {name: 'Istanbul', code: 'IST'},
+      {name: 'Paris', code: 'PRS'}
+  ];
+  }
 
   ngOnInit(): void {  
     this.closeEdit(false);  

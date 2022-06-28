@@ -1,0 +1,9 @@
+.stands{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  .stands-form{
+    order: 2;
+  }
+}
