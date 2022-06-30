@@ -4,6 +4,14 @@
   background-origin: padding-box;  
   background-position: inherit;
   background-size: contain;
-  width: 800px;
-  height: 800px;  
+  width: 550px;
+  height: 550px;  
+}
+
+
+@media (max-width: 768px) {
+  .map{
+    width: 420px;
+    height: 420px;  
+  }
 }

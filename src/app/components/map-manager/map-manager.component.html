@@ -1,9 +1,11 @@
+
 <div class="map" id="contenedor" (click)="oMousePos(this,$event)" #contenedor>  
+
   <app-mark-label 
   *ngFor="let item of listOfCordinates;let i = index"  
   [style.position]="'absolute'"  
-  [coordX]="item.x" 
-  [coordY]="item.y"
+  [coordX]="isSmall?item.sx-sizeDiferent:item.x-sizeDiferent" 
+  [coordY]="isSmall?item.sy-sizeDiferent:item.y-sizeDiferent"
   [numId]="i"></app-mark-label>
    
   <!--app-mark ></app-mark-->  

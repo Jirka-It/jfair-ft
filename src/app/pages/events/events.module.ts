@@ -20,6 +20,7 @@ import { TableEventsModule } from './events-list/event-table/table-event.module'
 import { EventsStandsComponent } from './events-stands/events-stands.component';
 import {PanelModule} from 'primeng/panel';
 import {MultiSelectModule} from 'primeng/multiselect';
+
 @NgModule({
     declarations: [
     EventsComponent,

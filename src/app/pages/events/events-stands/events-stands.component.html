@@ -44,5 +44,88 @@
 
   </div>
   <hr>
-  <app-map-manager></app-map-manager>
+  <app-map-manager (pointEvent)="openForm($event)" [coords]="coordinatesList"></app-map-manager>
+  
+
+  <p-dialog header="Informacion de Stand" [(visible)]="standForm" [modal]="true">
+    <div class="form-container mt-2">
+  
+      <div class="form-text">
+    
+        <div class="form-row">
+          <span class="p-float-label">
+            <input aria-autocomplete="list" role="searchbox" class="w-full p-autocomplete-input p-inputtext p-component ng-star-inserted" autocomplete="off" type="text" >            
+            <label>Zona</label>
+          </span>
+          <span class="p-float-label">
+            <input type="text" class="w-full" pInputText>
+            <label>Numero</label>
+          </span>
+        </div> 
+
+        <div class="form-row">
+          <span class="p-float-label">
+            <input type="text"  class="w-full"  pInputText>
+            <label>Dimensiones</label>
+          </span>
+          <span class="p-float-label">
+            <input type="text"  class="w-full"  pInputText>
+            <label>Numero</label>
+          </span>
+          <span class="p-float-label">
+            <input type="text" class="w-full" pInputText>
+            <label>Ancho</label>
+          </span>
+        </div>
+
+        <div class="form-row">
+          <span  class="p-float-label">
+            <span class="label-title" for="Descripcion">
+              Descripción
+            </span>
+            <p-editor id="Descripcion" >        
+            </p-editor>
+          </span>  
+        </div>
+        
+
+        <div class="form-row">
+          <span  class="p-float-label">
+            <span  class="label-title" for="Exclusiones">
+              Exclusiones 
+            </span>
+            <p-editor id="Exclusiones">        
+            </p-editor>
+          </span>  
+        </div>
+        
+
+        <div class="form-row">
+          <span class="p-float-label">
+            <input type="text"  class="w-full"  pInputText>
+            <label>Precio</label>
+          </span>
+          <span class="p-float-label">
+            <input aria-autocomplete="list" role="searchbox" class="w-full p-autocomplete-input p-inputtext p-component ng-star-inserted" autocomplete="off" type="text" >            
+            <label>Estado</label>
+          </span>
+        </div> 
+
+      </div>  
+
+    </div>
+    
+    <div class="footer-dialog">
+      <p-toolbar>
+        <div class="p-toolbar-group-left">
+            <p-button (click)="closeModal()" label="Cancelar" ></p-button>
+        </div>
+        
+        <div class="p-toolbar-group-right">
+          <p-button (click)="saveData(actualCoordinates)" label="Guardar" ></p-button>            
+        </div>
+
+     </p-toolbar>      
+   </div>
+  </p-dialog>
 </div>

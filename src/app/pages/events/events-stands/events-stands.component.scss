@@ -31,3 +31,47 @@
   color: white;
 
 }
+
+
+.form-container{    
+  display: flex;    
+  flex-direction: row;
+  flex-basis: 50;
+  gap: 25px;
+  
+  .form-text{
+      order: 1;
+      margin-top: 20px;
+      flex-grow: 1;
+      flex-basis: 50;  
+      width: 70%;             
+  }
+
+}
+
+.label-title{
+  font-weight: 700;
+  font-size: 18px;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  gap: 25px;        
+}
+p-editor{
+  height: 120px;
+}
+
+.form-row{               
+  display: flex;
+  flex-direction: row;
+  width: 100%;      
+  span{
+      padding: 5px;
+      
+      flex-grow: 2;  
+      margin-left: 20px;  
+      margin-right: 20px;  
+  }    
+}

@@ -1,6 +1,7 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, Output, ViewChild,EventEmitter, HostListener } from '@angular/core';
 import { PrimeNGConfig } from 'primeng/api';
 import { fromEvent, Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'app-map-manager',
@@ -10,25 +11,45 @@ import { fromEvent, Subscription } from 'rxjs';
 export class MapManagerComponent implements OnInit {
   @Input() map;
   @Input() id;
-  listOfCordinates = []
+  @Output() pointEvent:EventEmitter<any> = new EventEmitter();  
+  @Input('coords') listOfCordinates = []
   @ViewChild('contenedor') content:ElementRef;
   clickedElement: Subscription = new Subscription();
+  sizeDiferent = 15;
+  innerWidth: number;
+  isSmall = false;
   constructor() { }
   ngOnInit(): void {    
     
   }
 
-  oMousePos(elemento, evt) {
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.innerWidth = window.innerWidth;
+    if(innerWidth <= 768){
+      this.sizeDiferent = 15;
+      this.isSmall = true;
+    }else{
+      this.isSmall = false;
+      this.sizeDiferent = 15;
+    }
+  }
 
-    const ClientRect = elemento.content.nativeElement.getBoundingClientRect();
-    
-    const x = Math.round(evt.clientX - ClientRect.left)-15//evt.pageX -10;
-    const y = Math.round(evt.clientY - ClientRect.top)-15//evt.pageY -10;  
+  oMousePos(elemento, evt) {
+    const ClientRect = elemento.content.nativeElement.getBoundingClientRect();    
+    const x = Math.round(evt.clientX - ClientRect.left)//evt.pageX -10;
+    const y = Math.round(evt.clientY - ClientRect.top) //evt.pageY -10;  
+    const sx = Math.round(evt.clientX - ClientRect.left) -56//evt.pageX -10;
+    const sy = Math.round(evt.clientY - ClientRect.top)  -30//evt.pageY -10;  
     if(!this.spaceBussy(x,y)){
-      this.listOfCordinates.push({
-        x:x,
-        y:y,
-      });        
+      let coord = {  
+        x, 
+        y,
+        sx,
+        sy 
+      };
+      console.log(coord);
+      this.pointEvent.emit(coord);             
     }
   }
 
