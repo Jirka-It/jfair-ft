@@ -26,21 +26,23 @@ export class AppMenuComponent implements OnInit {
     ngOnInit() {
         this.modelAdmin = [
             {
-                label: 'Administración', icon: 'pi pi-fw pi-cog',                
+                label: 'Administración', icon: 'pi pi-fw pi-cog',admin:true,                
                 items: [                  
                     {
                         label: 'Nuevo evento', 
                         icon: 'pi pi-fw pi-plus',
                         routerLink: ['eventos/nuevo'],
+                        admin:true
                     },
                     {
                         label: 'Eventos', 
                         icon: 'pi pi-fw pi-plus',
                         routerLink: ['eventos'],
-                                                                         
+                        admin:true                                           
                     },
                     {
-                        selector:true
+                        selector:true,
+                        admin:true
                     }
                 ],
             }
@@ -52,7 +54,8 @@ export class AppMenuComponent implements OnInit {
                     {
                         label: 'Informacion', 
                         icon: 'pi pi-fw pi-plus',
-                        routerLink: ['dashboard'],                                                 
+                        routerLink: ['dashboard'],
+                        isEvent:true                                                 
                     },
                     {
                         label: 'Stands', 
@@ -60,40 +63,46 @@ export class AppMenuComponent implements OnInit {
                         badgeClass: 'p-badge-success',
                         items: [
                             
-                        ]
+                        ],
+                        isEvent:true
                     },
                     {
                         label: 'Solicitudes', 
                         icon: 'pi pi-fw pi-plus',                                                
                         items: [
                             
-                        ]
+                        ],
+                        isEvent:true
                     },
                     {
                         label: 'Secciones', 
                         icon: 'pi pi-fw pi-plus',
                         items: [
                             
-                        ]
+                        ],
+                        isEvent:true
                     },
                     {
                         label: 'Plano', 
                         icon: 'pi pi-fw pi-plus',                                               
                         items: [
                             
-                        ]
+                        ],
+                        isEvent:true
                     },
                    
-                    {label: 'Configuración', icon: 'pi pi-fw pi-cog',},
+                    {label: 'Configuración', icon: 'pi pi-fw pi-cog',isEvent:true},
                     {
                         label: 'Zonas',
                         icon: 'pi pi-fw pi-plus',
-                        routerLink: ['configuracion/stands'],                         
+                        routerLink: ['configuracion/stands'],                    
+                        isEvent:true     
                     },
                     {
                         label: 'Servicios',
                         icon: 'pi pi-fw pi-plus',
-                        routerLink: ['configuracion/servicios'],                         
+                        routerLink: ['configuracion/servicios'],
+                        isEvent:true
                     },
                    
 

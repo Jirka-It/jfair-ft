@@ -26,7 +26,7 @@ import { HttpParams } from '@angular/common/http';
                     {{item.label}}
                 </span>
             </div>
-            <a [attr.href]="item.url" (click)="itemClick($event)" *ngIf="(!item.routerLink || item.items) && item.visible !== false" (keydown.enter)="itemClick($event)"
+            <a [attr.href]="item.url" (click)="itemClick($event)" *ngIf="(!item.routerLink || item.items) && item.visible !== false && isSelectEvent()" (keydown.enter)="itemClick($event)"
                [attr.target]="item.target" [attr.tabindex]="0" [ngClass]="item.class" (mouseenter)="onMouseEnter()" pRipple
                [pTooltip]="item.label" [tooltipDisabled]="active || !(root && app.isSlim() && !app.isMobile())">
                 <i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
@@ -34,7 +34,8 @@ import { HttpParams } from '@angular/common/http';
                 <span class="p-badge p-component p-badge-no-gutter" [ngClass]="item.badgeClass" *ngIf="item.badge && !root">{{item.badge}}</span>
                 <i class="pi pi-fw pi-angle-down layout-submenu-toggler" *ngIf="item.items"></i>
             </a>
-            <a (click)="itemClick($event)" *ngIf="(item.routerLink && !item.items) && item.visible !== false"
+            <a *ngIf="!isSelectEvent()"></a>
+            <a  (click)="itemClick($event)" *ngIf="(item.routerLink && !item.items) && item.visible !== false && ( item.admin || isSelectEvent())"
                [routerLink]="item.routerLink" routerLinkActive="active-menuitem-routerlink" [routerLinkActiveOptions]="{exact: true}"
                [attr.target]="item.target" [attr.tabindex]="0" [ngClass]="item.class" (mouseenter)="onMouseEnter()" pRipple
                [pTooltip]="item.label" [tooltipDisabled]="active || !(root && app.isSlim() && !app.isMobile())">
@@ -166,9 +167,18 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
         this.eventSelected.emit(true);
     }
     filterEvents(event){
-        console.log(event);
-        this.eventsFiltereds = this.events.filter(filt => filt.name.indexOf(event.query.toLowerCase()) >= 0 );
-        console.log(this.selectEvent);
+        console.log(event)
+        if(event){
+            this.eventsFiltereds = this.events.filter(filt => filt.name.indexOf(event.query.toLowerCase()) >= 0 );
+            if(this.selectEvent['id']){
+                localStorage.setItem('eventSelect',JSON.stringify(this.selectEvent));
+            }
+            console.log(this.selectEvent['id']);
+        }
+    }
+
+    isSelectEvent(){
+        return localStorage.getItem('eventSelect') ? true:false;
     }
 
     itemClick(event: Event) {
