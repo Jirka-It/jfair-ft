@@ -7,11 +7,11 @@
     [rows]="10" 
     [paginator]="true"
     [filterDelay]="0" 
-    [globalFilterFields]="['id','name','openDate','closeDate','options']">
+    [globalFilterFields]="['codigo','zone','dimensiones','precio','state','options']">
             
         <ng-template pTemplate="header">
                 <tr>                    
-                    <th pSortableColumn="id">
+                    <th pSortableColumn="codigo">
                         <div class="flex justify-content-between align-items-center">
                             Codigo                           
                             <p-columnFilter field="id" matchMode="in" display="menu" [showMatchModes]="false" [showOperator]="false" [showAddButton]="false">
@@ -24,9 +24,9 @@
                         </div>
                     </th>
 
-                    <th pSortableColumn="sigla">
+                    <th pSortableColumn="zone">
                         <div class="flex justify-content-between align-items-center">
-                            Slug                           
+                            Zona                           
                             <p-columnFilter field="sigla" matchMode="in" display="menu" [showMatchModes]="false" [showOperator]="false" [showAddButton]="false">
                               <ng-template pTemplate="header">
                                   <div class="px-3 pt-3 pb-0">
@@ -37,25 +37,25 @@
                         </div>
                     </th>
 
-                    <th pSortableColumn="name">
+                    <th pSortableColumn="dimensiones">
                         <div class="flex justify-content-between align-items-center">
-                            Evento
+                            Dimensiones (m²)
                             <p-sortIcon field="name"></p-sortIcon>
                             <p-columnFilter type="text" field="name" display="menu" class="ml-auto"></p-columnFilter>
                         </div>
                     </th>
 
-                    <th pSortableColumn="openDate">
+                    <th pSortableColumn="precio">
                         <div class="flex justify-content-between align-items-center">
-                          Apertura
+                          Precio
                             <p-sortIcon field="openDate"></p-sortIcon>
                             <p-columnFilter type="text" field="openDate" display="menu" class="ml-auto"></p-columnFilter>
                            
                         </div>
                     </th>
-                    <th pSortableColumn="closeDate">
+                    <th pSortableColumn="state">
                       <div class="flex justify-content-between align-items-center">
-                        Cierre
+                        Estado
                           <p-sortIcon field="closeDate"></p-sortIcon>
                           <p-columnFilter type="text" field="closeDate" display="menu" class="ml-auto"></p-columnFilter>
                          
@@ -70,41 +70,40 @@
                     <th style="width: 8rem"></th>
                 </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-commercial>
+        <ng-template pTemplate="body" let-stand>
             <tr class="p-selectable-row">             
                     <td>
-                      <span class="p-column-title">Codigos</span>                     
-                   
+                      <span class="p-column-title">Codigos</span>                                        
                       <span class="image-text" style="margin-left: .5em;vertical-align: middle">
-                          {{commercial.id}}
+                          {{stand.codigo}}
                         </span>
                     </td>
                     <td>
-                      <span class="p-column-title">Slug</span>                                        
+                      <span class="p-column-title">Zona</span>                                        
+                      <span class="image-text" style="margin-left: .5em;vertical-align: middle">
+                          {{stand.zone}}
+                        </span>
+                    </td>
+                    <td>
+                      <span class="p-column-title">Dimensiones</span>                                        
                         <span class="image-text" style="margin-left: .5em;vertical-align: middle">
-                          {{commercial.sigla}}
+                          {{stand.dimensiones}}
                         </span>
                     </td>
                     <td>
-                        <span class="p-column-title">Evento</span>                        
-                        {{commercial.name}}
+                        <span class="p-column-title">precio</span>                        
+                        {{stand.precio}}
                     </td>
                     <td>
-                      <span class="p-column-title">Apertura</span>                        
-                        {{commercial.openDate | date}}
+                      <span class="p-column-title">Estado</span>                        
+                        {{stand.state}}
                     </td>
-                    <td>
-                      <span class="p-column-title">Cierre</span>                        
-                      {{commercial.closeDate | date}}
-                    </td>                                 
+                                    
                     <td>
                       <span class="p-column-title">Opciones</span>                        
-                      <button pButton pRipple type="button" icon="pi pi-pencil"    (click)="openOptions('EDIT',commercial.id)" tooltipPosition="bottom" class="p-button-warning p-button-text mr-2 mb-2" pTooltip="Editar"></button>
-                      <button pButton pRipple type="button" icon="pi pi-map"       (click)="openOptions('STAND',commercial.id)" tooltipPosition="bottom" class="p-button-text mr-2 mb-2" pTooltip="Stands"></button>
-                      <button pButton pRipple type="button" icon="pi pi-envelope"  tooltipPosition="bottom" class="p-button-text mr-2 mb-2" pTooltip="Solicitudes"></button>
-                      <button pButton pRipple type="button" icon="pi pi-desktop"   tooltipPosition="bottom" class=" p-button-text mr-2 mb-2" pTooltip="Portal"></button>
-                      <button pButton pRipple type="button" icon="pi pi-sitemap"   tooltipPosition="bottom" class=" p-button-text mr-2 mb-2" pTooltip="Secciones"></button>
-                      <button pButton pRipple type="button" icon="pi pi-trash"     tooltipPosition="bottom" class="p-button-danger p-button-text mr-2 mb-2" pTooltip="Eliminar"></button>                                            
+                      <button pButton pRipple type="button" icon="pi pi-pencil" tooltipPosition="bottom" class="p-button-warning p-button-text mr-2 mb-2" pTooltip="Editar"></button>
+    
+                      <button pButton pRipple type="button" icon="pi pi-trash"  tooltipPosition="bottom" class="p-button-danger p-button-text mr-2 mb-2" pTooltip="Eliminar"></button>                                            
                     </td>                                 
                  
                   

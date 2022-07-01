@@ -7,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventsStandsTableComponent implements OnInit {
   standsDatasource = [{
-    id:8,
-    name:'faire stand',
-    openDate:'01-02-22',
-    closeDate:'01-02-22',
+    codigo:8,  
+    dimensiones:10,  
+    precio:80000,
+    state:1,
+    zone:'tecno',
     options:[]
   }];
 

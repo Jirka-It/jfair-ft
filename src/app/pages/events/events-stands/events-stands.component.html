@@ -7,7 +7,7 @@
       </div>
       <div class="text">
         <h3>0/0</h3>
-        <p>texto</p>
+        <p>Vendidos</p>
       </div>
     </div>
 
@@ -17,7 +17,7 @@
       </div>
       <div class="text">
         <h3>0/0</h3>
-        <p>texto</p>
+        <p>Reservados</p>
       </div>
     </div>
 
@@ -27,7 +27,7 @@
       </div>
       <div class="text">
         <h3>0/0</h3>
-        <p>texto</p>
+        <p>Dsiponible</p>
       </div>
     </div>
 
@@ -37,17 +37,17 @@
       </div>
       <div class="text">
         <h3>0/0</h3>
-        <p>texto</p>
+        <p>Bloqueados</p>
+   
       </div>
+   
     </div>
     
 
   </div>
   <hr>
   <app-map-manager (pointEvent)="openForm($event)" [coords]="coordinatesList"></app-map-manager>
-  <hr>
-  <app-events-stands-table></app-events-stands-table>
-
+  
   <p-dialog header="Informacion de Stand" [(visible)]="standForm" [modal]="true">
     <div class="form-container mt-2">
   
@@ -129,4 +129,10 @@
      </p-toolbar>      
    </div>
   </p-dialog>
+</div>
+
+<div class="card">
+  
+  <app-events-stands-table></app-events-stands-table>
+
 </div>
