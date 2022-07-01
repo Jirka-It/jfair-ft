@@ -46,6 +46,7 @@
   <hr>
   <app-map-manager (pointEvent)="openForm($event)" [coords]="coordinatesList"></app-map-manager>
   
+  <app-events-stands-table></app-events-stands-table>
 
   <p-dialog header="Informacion de Stand" [(visible)]="standForm" [modal]="true">
     <div class="form-container mt-2">
