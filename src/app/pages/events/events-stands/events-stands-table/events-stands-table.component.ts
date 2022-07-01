@@ -6,8 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./events-stands-table.component.scss']
 })
 export class EventsStandsTableComponent implements OnInit {
-  standsDatasource = [];
-  
+  standsDatasource = [{
+    id:8,
+    name:'faire stand',
+    openDate:'01-02-22',
+    closeDate:'01-02-22',
+    options:[]
+  }];
+
   constructor() { }
 
   ngOnInit() {
